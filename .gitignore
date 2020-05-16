@@ -34,3 +34,4 @@ Text Fighter.iml
 *.mf
 nbproject/
 .TFsave
+/target/

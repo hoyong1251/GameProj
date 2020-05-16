@@ -176,6 +176,7 @@ public class Ui {
      * will be brute-force cleared
      */
     public static void cls() {
+    /*	
         try {
             if (System.getProperty("os.name").contains("Windows"))
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -184,7 +185,9 @@ public class Ui {
         } catch (IOException | InterruptedException exception) {
             for (int i = 1; i < 50; i++)
                 println("\n");
-        }
+        }*/
+         for (int i = 1; i < 50; i++)
+                println("\n");
     }
 
     public static int getValidInt() {

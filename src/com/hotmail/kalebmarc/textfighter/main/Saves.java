@@ -27,8 +27,8 @@ public class Saves {
 	private static Yaml yaml;
 
 	public static void save() {
-		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + ".TFsave";
-		path = path.replace(".jar", "_" + User.name());
+		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "username.TFsave";
+		path = path.replace("username", "_" + User.name());
 		path = path.replaceAll("%20", " ");
 
 		setup();
@@ -336,8 +336,8 @@ public class Saves {
 
 	public static boolean savesPrompt() {
 		User.promptNameSelection();
-		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + ".TFsave";
-		path = path.replace(".jar", "_" + User.name());
+		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "username.TFsave";
+		path = path.replace("username", "_" + User.name());
 		path = path.replaceAll("%20", " ");
 
 		Ui.cls();
@@ -345,22 +345,21 @@ public class Saves {
 		Ui.println("What would you like to do?");
 		Ui.println("------------------------------");
 		Ui.println("1) Load Save");
-		Ui.println("2) Convert Old Save");
-		Ui.println("3) Exit");
+	//	Ui.println("2) Convert Old Save");
+		Ui.println("2) New Game ");
 
 		switch (Ui.getValidInt()) {
 			case 1:
 				load();
 				break;
 			case 2:
-				convert();
-				break;
+				return false;
 			default:
 				return false;
 		}
 		return true;
 	}
-
+/*
 	public static boolean convert() {
 		Ui.cls();
 		Ui.println("------------------------------------");
@@ -500,6 +499,7 @@ public class Saves {
 
 		return true;
 	}
+	**/
 
 	public static boolean contains(String key) {
 		return data.containsKey(key);

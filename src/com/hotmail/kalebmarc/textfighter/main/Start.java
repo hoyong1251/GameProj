@@ -14,6 +14,7 @@ class Start {
 
         //Runs the game
         Menu.load();
+     //   MenuFrame.run();
 
         //Clears Console
         Ui.cls();
