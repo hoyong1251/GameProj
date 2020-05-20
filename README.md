@@ -35,3 +35,8 @@ In the beta stage, I want to add a better UI while still keeping the game mostly
 License
 --------------
 Published under the [MIT license](https://github.com/hhaslam11/Text-Fighter/blob/master/LICENSE)
+
+
+
+my git
+first change: save파일 경로수정 / convert기능 삭제 / 초기메뉴 스윙구현

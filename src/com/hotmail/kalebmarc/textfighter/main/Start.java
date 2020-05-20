@@ -1,5 +1,9 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
 class Start {
 
     public static void main(String args[]) {
@@ -13,8 +17,9 @@ class Start {
         }
 
         //Runs the game
-        Menu.load();
-     //   MenuFrame.run();
+     //  Menu.load();
+        MenuFrame frame =new MenuFrame();
+       // frame.run();
 
         //Clears Console
         Ui.cls();

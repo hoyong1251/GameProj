@@ -2,9 +2,13 @@ package com.hotmail.kalebmarc.textfighter.main;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,25 +45,42 @@ class MenuFrame extends JFrame {
 	
 	JLabel menu_label=new JLabel(menuStr);
 	
+	
+	
 	public MenuFrame() {
-		super("Text-Fighter(by Hoyong)");
-		
+		super("Text-Fighter(by Hoyong)");			
 		this.setSize(500,700);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); //실행 화면 위치 조정
 		this.setResizable(false); // 프레임크기 조절 x
-		this.setLayout(null);//레이아웃
-		
+	//	this.setLayout(null);//레이아웃
+		Game_Panel panel1=new Game_Panel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\StartImage.jpg").getImage());
+	
 		menu_label.setBounds(80, 50, 340, 400);
 		menu1.setBounds(190, 500, 120, 30);
 		menu2.setBounds(190, 550, 120, 30);
 		menu3.setBounds(190, 600, 120, 30);
 		imgbox.setSize(new Dimension(500,700));
+		this.add(menu1);
+		this.add(menu2);
+		this.add(menu3);
+		this.add(menu_label);
+		this.add(imgbox);
 		
 		menu1.addActionListener(event->{
-			Game.start();
-			Saves.save();
+			this.remove(imgbox);
+			this.remove(menu_label);
+			this.remove(menu1);
+			this.remove(menu2);
+			this.remove(menu3);
+			this.add(panel1);
+			this.pack();
+			this.setSize(500, 700);
+			
+		//	this.paintComponents(g);
+			//Game.start();
+			//Saves.save();
 		});
 		menu2.addActionListener(event->{
 			About.view(false);
@@ -68,19 +89,12 @@ class MenuFrame extends JFrame {
 			System.exit(0); //프로그램 종료
 		});
 		
-		this.add(menu1);
-		this.add(menu2);
-		this.add(menu3);
-		this.add(menu_label);
-		this.add(imgbox);
+
 	}
-	public static void run() {
-		new MenuFrame();
-	}
+
 	
 	
 }
-
 
 
 

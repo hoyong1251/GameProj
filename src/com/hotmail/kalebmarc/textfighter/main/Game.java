@@ -3,9 +3,15 @@ package com.hotmail.kalebmarc.textfighter.main;
 import com.hotmail.kalebmarc.textfighter.item.*;
 import com.hotmail.kalebmarc.textfighter.player.*;
 
+import java.awt.Dimension;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import static com.hotmail.kalebmarc.textfighter.player.Health.getStr;
 import static com.hotmail.kalebmarc.textfighter.player.Health.upgrade;
@@ -54,12 +60,17 @@ public class Game {
 	public static Food fish        = new Food("Fish",          "Found in rivers and lakes.",         StatusEffect.type.HEALTH, Food.type.MEAT_FISH,  15);
 
 	private static Scanner scan = new Scanner(System.in);
-
+	
+	
+	
 	public static void start() {
+	
 		
+	System.out.print("game start");
+	
 		/*
 		 * Asks if the user wants to load from the save file
-		 */
+		 
 		Ui.cls();
 		Ui.println("____________________________________________");
 		Ui.println("|                                           |");
@@ -97,7 +108,7 @@ public class Game {
 			/*
 			 * MAIN GAME MENU
 			 * Able to fight and go to other places from here
-			 */
+			 
 			Ui.println("Text-Fighter " + Version.getFull());
 			Ui.println("------------------------------------------------------------------");
 			//Displays only if cheats are activated
@@ -204,8 +215,8 @@ public class Game {
 				default:
 					break;
 			}//Switch
-		}//While loop
-	}//Method
+		}//While loop*/
+	}//Method 
 
 	private static void town() {
 
