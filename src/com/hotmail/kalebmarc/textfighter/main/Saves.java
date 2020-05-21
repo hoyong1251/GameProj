@@ -103,7 +103,7 @@ public class Saves {
 		set("Battle.Current.Enemy", Enemy.arrayEnemy.indexOf(Enemy.get()));
 		set("Battle.Current.Enemy_Health", Enemy.get().getHealth());
 		set("Battle.Current.Enemy_Max_Health", Enemy.get().getHealthMax());
-		set("Battle.Current.Enemy_First_Aid_Kit", Enemy.get().getEnemy_potion());
+		set("Battle.Current.Enemy_Potion", Enemy.get().getEnemy_potion());
 
 		//Achs
 
@@ -247,7 +247,7 @@ public class Saves {
 	}
 
 	public static boolean savesPrompt() {
-		User.promptNameSelection();
+	//	User.promptNameSelection();
 		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "username.TFsave";
 		path = path.replace("username", "_" + User.name());
 		path = path.replaceAll("%20", " ");
@@ -271,147 +271,7 @@ public class Saves {
 		}
 		return true;
 	}
-/*
-	public static boolean convert() {
-		Ui.cls();
-		Ui.println("------------------------------------");
-		Ui.println("WARNING- Converting a save file may");
-		Ui.println("result in a corrupt save.");
-		Ui.println("It's recommended that you make a");
-		Ui.println("backup of your current save file(s)");
-		Ui.println("before you continue.");
-		Ui.println("------------------------------------");
-		Ui.println("1) Exit");
-		Ui.println("2) Continue");
-
-		switch(Ui.getValidInt()){
-			case 1:
-				return false;
-			case 2:
-				break;
-			default:
-				return false;
-		}
-
-		try {
-			File file = new File(path);
-
-			if (!file.exists()) {
-				Ui.println("File not found. Please put an \"_\" before your username in the save file.");
-				System.exit(0); //TODO shouldn't just exit like this.... Go back to main menu
-			}
-
-			input = new Scanner(file);
-
-			setup();
-			readString();
-
-			//Health
-			Health.set(readInt(), readInt());
-			FirstAid.set(readInt(), false);
-			FirstAid.used = readInt();
-			InstaHealth.set(readInt(), false);
-			InstaHealth.used = readInt();
-			Health.timesDied = readInt();
-
-			//Coins
-			Coins.set(readInt(), false);
-			Bank.set(readInt(), false);
-			Casino.totalCoinsWon = readInt();
-			Casino.gamesPlayed = readInt();
-			Achievements.boughtItem = readBoolean();
-			Stats.totalCoinsSpent = readInt();
-			Stats.coinsSpentOnBankInterest = readInt();
-			Stats.coinsSpentOnWeapons = readInt();
-			Stats.coinsSpentOnHealth = readInt();
-			Stats.xpBought = readInt();
-			Loan.setCurrentLoan(readInt());
-			Loan.setNetDue(readInt());
-
-			//Xp
-			Xp.setLevel(readInt());
-			Xp.setOutOf(readInt());
-			Xp.set(readInt(), false);
-			Xp.total = readInt();
-			Xp.setBattleXp(readInt(), false);
-
-			//Potions
-			Potion.spUsed = readInt();
-			Potion.rpUsed = readInt();
-			Potion.set("survival", readInt(), false);
-			Potion.set("recovery", readInt(), false);
-
-
-			//Settings
-			Settings.setDif(input.nextLine(), false, false);
-			if (readBoolean()) Cheats.enable();
-			if (readBoolean()) Cheats.lock();
-			Settings.difLocked = readBoolean();
-			Ui.guiEnabled = readBoolean();
-
-			//Combat
-			Stats.kills = readInt();
-			Stats.highScore = readInt();
-			Stats.totalKills = readInt();
-			Weapon.set(readInt());
-			for (int i = 0; i < Weapon.arrayWeapon.size(); i++)
-				Weapon.arrayWeapon.get(i).owns = readBoolean();
-			for (int i = 0; i < Weapon.arrayWeapon.size(); i++)
-				Weapon.arrayWeapon.get(i).setAmmo(readInt(), false);
-			Power.set(readInt(), false);
-			Power.used = readInt();
-			Stats.totalDamageDealt = readInt();
-			Stats.bulletsFired = readInt();
-			Stats.bulletsThatHit = readInt();
-			for (int i = 0; i < Armour.getArmours().size(); i++)
-				Armour.getArmours().get(i).setOwns(readBoolean());
-			Armour.set(readInt());
-
-			//Enemy
-			Enemy.set(readInt());
-			Enemy.get().setHealth(readInt(), Enemy.get().getHealthMax());
-
-			//Achs
-			Achievements.moneyMaker = readBoolean();
-			Achievements.enemySlayer = readBoolean();
-			Achievements.firstKill = readBoolean();
-			Achievements.timeForAnUpgrade = readBoolean();
-			for (int i = 0; i < Enemy.arrayEnemy.size(); i++)
-				Achievements.arrayKilled.set(i, readBoolean());
-			Achievements.textFighterMaster = readBoolean();
-			Achievements.YAYPOWER = readBoolean();
-			Achievements.awwYouCareAboutMe = readBoolean();
-			Achievements.slayer = readBoolean();
-			Achievements.nobodysPerfect = readBoolean();
-			Achievements.makingMoney = readBoolean();
-			Achievements.gamblingAddiction = readBoolean();
-			Achievements.level2Fighter = readBoolean();
-			Achievements.level3Fighter = readBoolean();
-			Achievements.level4Fighter = readBoolean();
-			Achievements.level5Fighter = readBoolean();
-			Achievements.level6Fighter = readBoolean();
-			Achievements.level7Fighter = readBoolean();
-			Achievements.level8Fighter = readBoolean();
-			Achievements.level9Fighter = readBoolean();
-			Achievements.level10Fighter = readBoolean();
-			Achievements.honestPlayer = readBoolean();
-
-			//Other Stuff
-			About.setViewed(readBoolean());
-			Stats.timesCheated = readInt();
-			Stats.timesQuit = readInt();
-			Stats.itemsCrafted = readInt();
-			Stats.diceGamesPlayed = readInt();
-			Stats.slotGamesPlayed = readInt();
-
-			save();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return true;
-	}
-	**/
+	
 
 	public static boolean contains(String key) {
 		return data.containsKey(key);

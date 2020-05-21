@@ -148,7 +148,7 @@ public class Enemy {
         } else {
             this.enemy_potion--;
             this.takeDamage(-20);
-            Ui.msg("The " + this.name + " has used a first-aid kit. They gained 20 health");
+            Ui.msg("The " + this.name + " has used a potion. They gained 20 health");
             return true;
         }
     }
