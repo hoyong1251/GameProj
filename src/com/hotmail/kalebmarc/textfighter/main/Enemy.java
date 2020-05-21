@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Enemy {
 
     //constants
-    private static final int FIRST_AID_KIT_MIN = 0;
-    private static final int FIRST_AID_KIT_MAX = 2;
+    private static final int Potion_MIN = 0;
+    private static final int Potion_MAX = 2;
 
     //Enemy List
     public static final ArrayList<Enemy> arrayEnemy = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Enemy {
 
     //Variables
     private int health;
-    private int firstAidKit;
+    private int enemy_potion;
 
     public Enemy(String name, int healthMax, int coinDropMin, int coinDropMax,
                  int damageMin, int damageMax, int xp, boolean firstInit, boolean changeDif) {
@@ -57,7 +57,6 @@ public class Enemy {
          */
         if (!changeDif) {
             arrayEnemy.add(this);
-            Achievements.setUpEnemyAch(name, this);
         }
         if (firstInit) {//Only call if its the first time initializing the enemy. (Not if changing difficulties)
             this.health = healthMax;
@@ -80,7 +79,7 @@ public class Enemy {
 
         current = arrayEnemy.get(Random.RInt(0, arrayEnemy.size() - 1));
         current.health = current.healthMax;
-        current.firstAidKit = Random.RInt(FIRST_AID_KIT_MIN, FIRST_AID_KIT_MAX);
+        current.enemy_potion = Random.RInt(Potion_MIN, Potion_MAX);
         com.hotmail.kalebmarc.textfighter.player.Xp.setBattleXp(0, false);
         Ui.popup("You have encountered a " + current.getName(), "Encounter", JOptionPane.INFORMATION_MESSAGE);
 
@@ -138,29 +137,28 @@ public class Enemy {
         Stats.kills++;
         Stats.totalKills++;
 
-        //Get Achievement
-        Achievements.getEnemyAch(Enemy.get());
+       
 
         encounterNew();
     }
 
-    public boolean useFirstAidKit(){
-        if (this.firstAidKit <= 0) {
+    public boolean usePotion(){
+        if (this.enemy_potion <= 0) {
             return false;
         } else {
-            this.firstAidKit--;
+            this.enemy_potion--;
             this.takeDamage(-20);
             Ui.msg("The " + this.name + " has used a first-aid kit. They gained 20 health");
             return true;
         }
     }
 
-    public int getFirstAidKit(){
-        return this.firstAidKit;
+    public int getEnemy_potion(){
+        return this.enemy_potion;
     }
 
-    public void setFirstAidKit(int amount){
-        this.firstAidKit = amount;
+    public void setEnemy_potion(int amount){
+        this.enemy_potion = amount;
     }
 
     public void setDamage(int min, int max) {

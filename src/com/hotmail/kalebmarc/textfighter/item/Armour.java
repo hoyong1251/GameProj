@@ -1,7 +1,5 @@
 package com.hotmail.kalebmarc.textfighter.item;
 
-import com.hotmail.kalebmarc.textfighter.main.Handle;
-import com.hotmail.kalebmarc.textfighter.main.NPC;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
 import com.hotmail.kalebmarc.textfighter.player.Coins;
 import com.hotmail.kalebmarc.textfighter.player.Xp;
@@ -29,8 +27,8 @@ public class Armour {
     public static Armour getEquipped() {
         for (Armour i : armours) {
             if (i.isEquipped()) return i;
-        }
-        Handle.error("Error - No armour equipped");
+        } 
+        Ui.print("No armour equipped");
         return null;
     }
 
@@ -175,7 +173,6 @@ public class Armour {
             Coins.set(-this.price, true);
             setOwns(true);
             equipSilent();
-            NPC.gratitude("Armour", "purchase");
             Ui.pause();
             return true;
         } else {

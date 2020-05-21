@@ -1,8 +1,5 @@
 package com.hotmail.kalebmarc.textfighter.player;
 
-import com.hotmail.kalebmarc.textfighter.item.FirstAid;
-import com.hotmail.kalebmarc.textfighter.item.InstaHealth;
-import com.hotmail.kalebmarc.textfighter.item.Power;
 import com.hotmail.kalebmarc.textfighter.main.*;
 
 public class Settings {
@@ -167,21 +164,14 @@ public class Settings {
             Game.sniper = new Weapon("Sniper", 1, 10, true, 700, 2, 7, 0, firstInit, changeDif);
 
             //Price
-            Power.price = 25;
             Weapon.BULLET_DAMAGE = 10;
-            FirstAid.price = 5;
             Potion.spPrice = 10;
             Potion.rpPrice = 20;
-            InstaHealth.price = 30;
-            Bank.setInterest(0.05);
             Health.setUpgradePrice(100);
 
             //Levels needed
-            FirstAid.level = 1;
-            Potion.spLevel = 2;
-            Potion.rpLevel = 2;
-            InstaHealth.level = 3;
-            Power.level = 4;
+            Potion.spLevel = 1;
+            Potion.rpLevel = 1;
 
         } else {//Sets variables for HARD mode
 
@@ -210,22 +200,16 @@ public class Settings {
             Game.rifle = new Weapon("Rifle", 1, 18, true, 300, 1, 5, 10, firstInit, changeDif);
             Game.sniper = new Weapon("Sniper", 1, 10, true, 750, 2, 7, 0, firstInit, changeDif);
 
-            //PRICE
-            Power.price = 75;
+
             Weapon.BULLET_DAMAGE = 5;
-            FirstAid.price = 15;
             Potion.spPrice = 25;
-            Potion.rpPrice = 35;
-            InstaHealth.price = 45;
-            Bank.setInterest(0.10);
-            Health.setUpgradePrice(100);
+            Potion.rpPrice = 50; //hard
+            Health.setUpgradePrice(150); //hard
 
             //Levels needed
-            FirstAid.level = 1;
-            Potion.spLevel = 2;
-            Potion.rpLevel = 2;
-            InstaHealth.level = 3;
-            Power.level = 4;
+            Potion.spLevel = 1;
+            Potion.rpLevel = 1;
+
 
         }
         if (firstInit) newGameSetup();
@@ -234,7 +218,6 @@ public class Settings {
     private static void newGameSetup() {
 
         Coins.set(50, false);
-        FirstAid.set(3, false);
         Potion.set("survival", 2, false);
         Potion.set("recovery", 2, false);
         Xp.setAll(0, 500, 1);

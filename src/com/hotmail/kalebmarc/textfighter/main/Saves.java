@@ -1,9 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
 import com.hotmail.kalebmarc.textfighter.item.Armour;
-import com.hotmail.kalebmarc.textfighter.item.FirstAid;
-import com.hotmail.kalebmarc.textfighter.item.InstaHealth;
-import com.hotmail.kalebmarc.textfighter.item.Power;
 import com.hotmail.kalebmarc.textfighter.player.*;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
@@ -42,25 +39,15 @@ public class Saves {
 		//Health
 		set("User.Health", Health.get());
 		set("User.Max_Health", Health.getOutOf());
-		set("User.FirstAid.Owns", FirstAid.get());
-		set("Stats.FirstAid.Used", FirstAid.used);
-		set("User.InstaHealth.Owns", InstaHealth.get());
-		set("Stats.InstaHealth.Used", InstaHealth.used);
 		set("Stats.TimesDied", Health.timesDied);
 
 		//Coins
 		set("User.Balance", Coins.get());
-		set("Bank.Balance", Bank.get());
-		set("Casino.Winnings", Casino.totalCoinsWon);
-		set("Casino.Plays", Casino.gamesPlayed);
-		set("Achievements.Bought_Item", Achievements.boughtItem);
 		set("Stats.Money_Spent.Coins", Stats.totalCoinsSpent);
 		set("Stats.Money_Spent.Interest", Stats.coinsSpentOnBankInterest);
 		set("Stats.Money_Spent.Weapons", Stats.coinsSpentOnWeapons);
 		set("Stats.Money_Spent.Health", Stats.coinsSpentOnHealth);
 		set("Stats.Money_Spent.XP", Stats.xpBought);
-		set("Bank.Current_Loan.Balance", Loan.getCurrentLoan());
-		set("Bank.Current_Loan.Due", Loan.getNetDue());
 
 		//Xp
 		set("User.XP.Level", Xp.getLevel());
@@ -99,8 +86,6 @@ public class Saves {
 		}
 
 
-		set("User.Power", Power.get());
-		set("Stats.Power.Used", Power.used);
 		set("Stats.Damage_Dealt", Stats.totalDamageDealt);
 		set("Stats.Bullets_Fired", Stats.bulletsFired);
 		set("Stats.Bullets_Hit", Stats.bulletsThatHit);
@@ -118,45 +103,16 @@ public class Saves {
 		set("Battle.Current.Enemy", Enemy.arrayEnemy.indexOf(Enemy.get()));
 		set("Battle.Current.Enemy_Health", Enemy.get().getHealth());
 		set("Battle.Current.Enemy_Max_Health", Enemy.get().getHealthMax());
-		set("Battle.Current.Enemy_First_Aid_Kit", Enemy.get().getFirstAidKit());
+		set("Battle.Current.Enemy_First_Aid_Kit", Enemy.get().getEnemy_potion());
 
 		//Achs
-		set("Achievements.Money_Maker", Achievements.moneyMaker);
-		set("Achievements.Enemy_Slayer", Achievements.enemySlayer);
-		set("Achievements.First_Kill", Achievements.firstKill);
-		set("Achievements.Time_For_An_Upgrade", Achievements.timeForAnUpgrade);
 
-		List<String> enemiesKilled = new ArrayList<>();
-
-		for (int i = 0; i < Enemy.arrayEnemy.size(); i++)
-			if (Achievements.arrayKilled.get(i))
-				enemiesKilled.add(Enemy.arrayEnemy.get(i).getName());
-		set("Achievements.Enemies_Killed", enemiesKilled);
-		set("Achievements.Text_Fighter_Master", Achievements.textFighterMaster);
-		set("Achievements.YAY_POWER", Achievements.YAYPOWER);
-		set("Achievements.Aww_You_Care_About_Me", Achievements.awwYouCareAboutMe);
-		set("Achievements.Slayer", Achievements.slayer);
-		set("Achievements.Nobodys_Perfect", Achievements.nobodysPerfect);
-		set("Achievements.Making_Money", Achievements.makingMoney);
-		set("Achievements.Gambling_Addiction", Achievements.gamblingAddiction);
-		set("Achievements.Level_2_Fighter", Achievements.level2Fighter);
-		set("Achievements.Level_3_Fighter", Achievements.level3Fighter);
-		set("Achievements.Level_4_Fighter", Achievements.level4Fighter);
-		set("Achievements.Level_5_Fighter", Achievements.level5Fighter);
-		set("Achievements.Level_6_Fighter", Achievements.level6Fighter);
-		set("Achievements.Level_7_Fighter", Achievements.level7Fighter);
-		set("Achievements.Level_8_Fighter", Achievements.level8Fighter);
-		set("Achievements.Level_9_Fighter", Achievements.level9Fighter);
-		set("Achievements.Level_10_Fighter", Achievements.level10Fighter);
-		set("Achievements.Honest_Player", Achievements.honestPlayer);
 
 		//Other Stuff
 		set("Settings.About_Viewed", About.viewed());
 		set("Stats.Times_Cheated", Stats.timesCheated);
 		set("Stats.Times_Quit", Stats.timesQuit);
 		set("Stats.Items_Crafted", Stats.timesCheated);
-		set("Stats.Games_Played.Dice", Stats.diceGamesPlayed);
-		set("Stats.Games_Played.Slots", Stats.slotGamesPlayed);
 
 		try {
 			if (!saveLocation.exists())
@@ -193,25 +149,15 @@ public class Saves {
 
 		//Health
 		Health.set(getInteger("User.Health"), getInteger("User.Max_Health"));
-		FirstAid.set(getInteger("User.FirstAid.Owns"), false);
-		FirstAid.used = getInteger("Stats.FirstAid.Used");
-		InstaHealth.set(getInteger("User.InstaHealth.Owns"), false);
-		InstaHealth.used = getInteger("Stats.InstaHealth.Used");
 		Health.timesDied = getInteger("Stats.TimesDied");
 
 		//Coins
 		Coins.set(getInteger("User.Balance"), false);
-		Bank.set(getInteger("Bank.Balance"), false);
-		Casino.totalCoinsWon = getInteger("Casino.Winnings");
-		Casino.gamesPlayed = getInteger("Casino.Plays");
-		Achievements.boughtItem = getBoolean("Achievements.Bought_Item");
 		Stats.totalCoinsSpent = getInteger("Stats.Money_Spent.Coins");
 		Stats.coinsSpentOnBankInterest = getInteger("Stats.Money_Spent.Interest");
 		Stats.coinsSpentOnWeapons = getInteger("Stats.Money_Spent.Weapons");
 		Stats.coinsSpentOnHealth = getInteger("Stats.Money_Spent.Health");
 		Stats.xpBought = getInteger("Stats.Money_Spent.XP");
-		Loan.setCurrentLoan(getInteger("Bank.Current_Loan.Balance"));
-		Loan.setNetDue(getInteger("Bank.Current_Loan.Due"));
 
 		//Xp
 		Xp.setLevel(getInteger("User.XP.Level"));
@@ -246,8 +192,6 @@ public class Saves {
 			Weapon.arrayWeapon.get(i).setAmmo(getInteger("User.Weapons.Ammo." + i), false);
 		}
 
-		Power.set(getInteger("User.Power"), false);
-		Power.used = getInteger("Stats.Power.Used");
 		Stats.totalDamageDealt = getInteger("Stats.Damage_Dealt");
 		Stats.bulletsFired = getInteger("Stats.Bullets_Fired");
 		Stats.bulletsThatHit = getInteger("Stats.Bullets_Hit");
@@ -262,48 +206,16 @@ public class Saves {
 		//Enemy
 		Enemy.set(getInteger("Battle.Current.Enemy"));
 		Enemy.get().setHealth(getInteger("Battle.Current.Enemy_Health"), getInteger("Battle.Current.Enemy_Max_Health"));
-		Enemy.get().setFirstAidKit(getInteger("Battle.Current.Enemy_First_Aid_Kit"));
+	//	Enemy.get().setEnemy_potion(getInteger("Battle.Current.Enemy_First_Aid_Kit"));
+		Enemy.get().setEnemy_potion(getInteger("Battle.Current.Enemy_Potion"));
 
 		//Achs
-		Achievements.moneyMaker         = getBoolean("Achievements.Money_Maker");
-		Achievements.enemySlayer        = getBoolean("Achievements.Enemy_Slayer");
-		Achievements.firstKill          = getBoolean("Achievements.First_Kill");
-		Achievements.timeForAnUpgrade   = getBoolean("Achievements.Time_For_An_Upgrade");
-
-		List<String> achSet = (List<String>) getList("Achievements.Enemies_Killed");
-
-		for (int i = 0; i < achSet.size(); i++){
-			for (int x = 0; x < Enemy.arrayEnemy.size(); x++){
-				if(Enemy.arrayEnemy.get(x).getName().equals(achSet.get(i))){
-					Achievements.arrayKilled.set(x, true);
-				}
-			}
-		}
-		Achievements.textFighterMaster  = getBoolean("Achievements.Text_Fighter_Master");
-		Achievements.YAYPOWER           = getBoolean("Achievements.YAY_POWER");
-		Achievements.awwYouCareAboutMe  = getBoolean("Achievements.Aww_You_Care_About_Me");
-		Achievements.slayer             = getBoolean("Achievements.Slayer");
-		Achievements.nobodysPerfect     = getBoolean("Achievements.Nobodys_Perfect");
-		Achievements.makingMoney        = getBoolean("Achievements.Making_Money");
-		Achievements.gamblingAddiction  = getBoolean("Achievements.Gabling_Addiction");
-		Achievements.level2Fighter      = getBoolean("Achievements.Level_2_Fighter");
-		Achievements.level3Fighter      = getBoolean("Achievements.Level_3_Fighter");
-		Achievements.level4Fighter      = getBoolean("Achievements.Level_4_Fighter");
-		Achievements.level5Fighter      = getBoolean("Achievements.Level_5_Fighter");
-		Achievements.level6Fighter      = getBoolean("Achievements.Level_6_Fighter");
-		Achievements.level7Fighter      = getBoolean("Achievements.Level_7_Fighter");
-		Achievements.level8Fighter      = getBoolean("Achievements.Level_8_Fighter");
-		Achievements.level9Fighter      = getBoolean("Achievements.Level_9_Fighter");
-		Achievements.level10Fighter     = getBoolean("Achievements.Level_10_Fighter");
-		Achievements.honestPlayer       = getBoolean("Achievements.Honest_Player");
-
+		
+		
 		//Other Stuff
 		About.setViewed(getBoolean("Settings.About_Viewed"));
 		Stats.timesCheated = getInteger("Stats.Times_Cheated");
 		Stats.timesQuit = getInteger("Stats.Times_Quit");
-		Stats.itemsCrafted = getInteger("Stats.Items_Crafted");
-		Stats.diceGamesPlayed = getInteger("Stats.Games_Played.Dice");
-		Stats.slotGamesPlayed = getInteger("Stats.Games_Played.Slots");
 
 		return true;
 	}
@@ -723,7 +635,7 @@ public class Saves {
                 val = new LinkedHashMap();
                 cur.put(nodes[i], val);
             } else if (!(val instanceof Map)) {
-                Handle.error("There was a problem saving your game.");
+                Ui.print("There was a problem saving your game.");
             }
 			cur = (Map<String, Object>) val;
 		}

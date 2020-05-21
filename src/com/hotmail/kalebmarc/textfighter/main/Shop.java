@@ -1,9 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
 import com.hotmail.kalebmarc.textfighter.item.Armour;
-import com.hotmail.kalebmarc.textfighter.item.FirstAid;
-import com.hotmail.kalebmarc.textfighter.item.InstaHealth;
-import com.hotmail.kalebmarc.textfighter.item.Power;
 import com.hotmail.kalebmarc.textfighter.player.Coins;
 import com.hotmail.kalebmarc.textfighter.player.Potion;
 import com.hotmail.kalebmarc.textfighter.player.Stats;
@@ -22,7 +19,6 @@ class Shop {
             Ui.println("                        Welcome to the shop!                       ");
             Ui.println();
             Ui.println("Coins: " + Coins.get());
-            Ui.println("First-Aid kits: " + FirstAid.get());
             Ui.println("Potions: " + (Potion.get("survival") + Potion.get("recovery")));
             Ui.println();
             Ui.println("-------------------------------------------------------------------");
@@ -64,18 +60,11 @@ class Shop {
             Ui.println("-------------------------------------------------------------------");
             Ui.println("                               Health                              ");
             Ui.println();
-            NPC.welcome("Health");
             Ui.println();
             Ui.println("Coins: " + Coins.get());
-            Ui.println("First-Aid kits: " + FirstAid.get());
             Ui.println("Potions: " + (Potion.get("survival") + Potion.get("recovery")));
-            Ui.println("Insta-Healths: " + InstaHealth.get());
             Ui.println();
             Ui.println("-------------------------------------------------------------------");
-            Ui.println("1) FIRST-AID KIT");
-            Ui.println("   Price - " + FirstAid.price + " coins");
-            Ui.println("   Level - " + FirstAid.level);
-            Ui.println();
             Ui.println("2) SURVIVAL POTION");
             Ui.println("   Price - " + Potion.spPrice + " coins");
             Ui.println("   Level - " + Potion.spLevel);
@@ -84,32 +73,24 @@ class Shop {
             Ui.println("   Price - " + Potion.rpPrice + " coins");
             Ui.println("   Level - " + Potion.rpLevel);
             Ui.println();
-            Ui.println("4) INSTA-HEALTH");
-            Ui.println("   Price - " + InstaHealth.price + " coins");
-            Ui.println("   Level - " + InstaHealth.level);
-            Ui.println();
             Ui.println("5) Back");
             Ui.println("-------------------------------------------------------------------");
             switch (Ui.getValidInt()) {
                 case 1:
                     Ui.cls();
-                    FirstAid.buy();
-                    NPC.gratitude("Health", "purchase");
+                    //FirstAid.buy();
                     break;
                 case 2:
                     Ui.cls();
                     Potion.buy("survival");
-                    NPC.gratitude("Health", "purchase");
                     break;
                 case 3:
                     Ui.cls();
                     Potion.buy("recovery");
-                    NPC.gratitude("Health", "purchase");
                     break;
                 case 4:
                     Ui.cls();
-                    InstaHealth.buy();
-                    NPC.gratitude("Health", "purchase");
+                //    InstaHealth.buy();
                     break;
                 case 5:
                     return;
@@ -125,7 +106,6 @@ class Shop {
             Ui.println("-------------------------------------------------------------------");
             Ui.println("                              Weapons                              ");
             Ui.println();
-            NPC.welcome("Weapon");
             Ui.println();
             Ui.println("Coins: " + Coins.get());
             Ui.println("Level: " + Xp.getLevel());
@@ -143,10 +123,6 @@ class Shop {
                     Ui.println();
                 }
             }
-            Ui.println((j + 1) + ") POWER");
-            Ui.println("   Price: " + Power.price);
-            Ui.println("   Level: " + Power.level);
-            Ui.println();
             Ui.println((j + 2) + ") AMMO");
             Ui.println();
             Ui.println((j + 3) + ") Back");
@@ -158,8 +134,8 @@ class Shop {
                 try { //This is probably pretty bad practice. Using exceptions as a functional part of the program.. Use variables!
 
                     //choices other than options in the array go here:
-                    if (menuItem == (j + 1))
-                        Power.buy();
+                   // if (menuItem == (j + 1))
+                	
                     if (menuItem == (j + 2))
                         buyAmmo();
                     if (menuItem == (j + 3) || menuItem > j)
@@ -198,7 +174,6 @@ class Shop {
             Ui.println("-------------------------------------------------------------------");
             Ui.println("                                 XP                                ");
             Ui.println();
-            NPC.welcome("XP");
             Ui.println();
             Ui.println("Level: " + Xp.getLevel());
             Ui.println("XP: " + Xp.getFull());
@@ -236,7 +211,6 @@ class Shop {
                 Xp.set(buy, true);
                 Coins.set(-buy, true);
                 Stats.xpBought += buy;
-                NPC.gratitude("XP", "purchase");
             }
 
         }
@@ -271,7 +245,6 @@ class Shop {
 
                 try { //This is probably pretty bad practice. Using exceptions as a functional part of the program.. Use variables!
                     validWeapons.get(menuItem - 1).buyAmmo();
-                    NPC.gratitude("Weapon", "purchase");
                     break;
 
                 } catch (Exception e) {
@@ -293,7 +266,6 @@ class Shop {
             Ui.cls();
             Ui.println("________________________________________________");
             Ui.println("                    Property                    ");
-            NPC.welcome("property");
             Ui.println("Level: " + Xp.getLevel());
             Ui.println("Coins: " + Coins.get());
             Ui.println("________________________________________________");
@@ -311,7 +283,6 @@ class Shop {
             Ui.println("-------------------------------------------------------------------");
             Ui.println("                            Body Armour                            ");
             Ui.println();
-            NPC.welcome("Armour");
             Ui.println();
             Ui.println("Coins: " + Coins.get());
             Ui.println("Level: " + Xp.getLevel());

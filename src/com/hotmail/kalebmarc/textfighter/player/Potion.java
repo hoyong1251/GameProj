@@ -1,6 +1,5 @@
 package com.hotmail.kalebmarc.textfighter.player;
 
-import com.hotmail.kalebmarc.textfighter.main.Handle;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
 
 public class Potion {
@@ -48,7 +47,7 @@ public class Potion {
                 }
                 break;
             default:
-                Handle.error("Unknown potion type: " + kind);
+                Ui.print("Unknown potion type: " + kind);
         }
     }
 

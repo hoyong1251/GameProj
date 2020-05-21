@@ -1,7 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
 import com.hotmail.kalebmarc.textfighter.item.Armour;
-import com.hotmail.kalebmarc.textfighter.player.Achievements;
 
 class Help {
     private Help() {
@@ -22,7 +21,7 @@ class Help {
             Ui.println("5) Food");
             Ui.println("6) XP");
             Ui.println("7) Cheats");
-            Ui.println("8) Achievements");
+            Ui.println("8) Achievements x");
             Ui.println("9) Back");
             Ui.println("------------------------------------------------------------");
             switch (Ui.getValidInt()) {
@@ -39,7 +38,7 @@ class Help {
                     info_health();
                     break;
                 case 5:
-                    info_food();
+           //         info_food();
                     break;
                 case 6:
                     info_xp();
@@ -48,7 +47,7 @@ class Help {
                     info_cheats();
                     break;
                 case 8:
-                    info_achs();
+            //        info_achs();
                     break;
                 case 9:
                     return;
@@ -146,30 +145,7 @@ class Help {
         Ui.pause();
     }
 
-    private static void info_food() {
-        while (true) {
-            Ui.cls();
-            Ui.println("------------------------------------------------------------");
-            Ui.println("                          FOOD INFO                         ");
-            Ui.println("Which food would you like to know about?");
-            Ui.println();
-            for (int i = 0; i < Food.arrayFood.size(); i++) {
-                Ui.println((i + 1) + ") " + Food.arrayFood.get(i).getName());
-            }
-            Ui.println((Food.arrayFood.size() + 1) + ") Back");
-            Ui.println("------------------------------------------------------------");
 
-            int menuItem = Ui.getValidInt();
-
-            try {
-                Food.arrayFood.get(menuItem - 1).viewAbout();
-            } catch (Exception e) {
-                if (menuItem == (Food.arrayFood.size() + 1)) return;
-                Ui.println(menuItem + " is not an option.");
-                Ui.pause();
-            }
-        }
-    }
 
     private static void info_xp() {
         Ui.cls();
@@ -228,45 +204,4 @@ class Help {
         Ui.pause();
     }
 
-    private static void info_achs() {
-        Ui.cls();
-        Ui.println("-------------------------------------------------------------------------");
-        Ui.println("                         ACHIEVEMENTS                       ");
-        Ui.println("You are rewarded 100 xp for each achievement you get. ");
-        Ui.println("If you get all achievements, you will be rewarded with 2500 ");
-        Ui.println("coins.");
-        Ui.println("");
-        Ui.println("List of achievements: ");
-        Ui.println("   Achievement            | Description");
-        Ui.println("                          | ");
-        Ui.println("   Money Maker            | Get 1500 coins");
-        Ui.println("   Enemy Slayer           | Kill a total of 100 enemies");
-        Ui.println("   First Kill             | Kill one enemy");
-        Ui.println("   Time For An Upgrade    | Buy any weapon from the shop");
-        for (int i = 0; i < Enemy.arrayEnemy.size(); i++) {
-            Ui.print("   Goodbye, " + Enemy.arrayEnemy.get(i).getName());
-            for (int x = 0; x < (14 - Enemy.arrayEnemy.get(i).getName().length()); x++) Ui.print(" ");
-            Ui.println("| Kill a " + Enemy.arrayEnemy.get(i).getName());
-
-        }
-        Ui.println("   Text-Fighter Master    | Get all other achievements");
-        Ui.println("   Yay, POWER!            | Use 5 POWERS");
-        Ui.println("   Slayer                 | Deal a total of 1000 damage");
-        Ui.println("   Nobody's Perfect       | Die");
-        Ui.println("   Making Money           | Win 1000 coins altogether in the Casino");
-        Ui.println("   Gambling Addiction     | Complete 75 rounds in the Casino");
-        Ui.println("   Level 2 Fighter        | Reach level 2");
-        Ui.println("   Level 3 Fighter        | Reach level 3");
-        Ui.println("   Level 4 Fighter        | Reach level 4");
-        Ui.println("   Level 5 Fighter        | Reach level 5");
-        Ui.println("   Level 6 Fighter        | Reach level 6");
-        Ui.println("   Level 7 Fighter        | Reach level 7");
-        Ui.println("   Level 8 Fighter        | Reach level 8");
-        Ui.println("   Level 9 Fighter        | Reach level 9");
-        Ui.println("   Level 10 Fighter       | Reach level 10");
-        Ui.println("   Honest Player          | Lock cheats off");
-        Ui.println("   Learning               | Look at every single help page in one session");
-        Ui.println("-------------------------------------------------------------------------");
-        Ui.pause();
-    }
 }

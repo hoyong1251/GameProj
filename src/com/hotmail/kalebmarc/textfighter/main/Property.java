@@ -70,7 +70,6 @@ public class Property {
                 case "RIVER":
                     return "River";
                 default:
-                    Handle.error("Unknown Property Type: " + super.toString());
                     return null;
             }
         }

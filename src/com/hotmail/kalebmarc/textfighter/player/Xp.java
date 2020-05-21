@@ -1,7 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.player;
 
 import com.hotmail.kalebmarc.textfighter.main.Cheats;
-import com.hotmail.kalebmarc.textfighter.main.Handle;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
 
 import javax.swing.*;
@@ -25,7 +24,7 @@ public class Xp {
             Coins.set(250, true);
 
 		}else if(level > 100){
-			Handle.error("Error - Level is greater than 100");
+			Ui.print("Error - Level is greater than 100");
             level = 100;
 		}else if(level == 99){
             level = 100;
@@ -38,7 +37,6 @@ public class Xp {
 			level++;
             Coins.set(100, true);
 		}
-		Achievements.check();
 	}
 
 	public static void set(int amount, boolean add) {

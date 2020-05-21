@@ -52,13 +52,7 @@ public class Game {
 
 	//Food
 	//TODO when the StatusEffect system is implemented, change effect types
-	public static Food apple       = new Food("Apple",         "A boring 'ol apple.",                StatusEffect.type.HEALTH, Food.type.FRUIT,      5);
-	public static Food orange      = new Food("Orange",        "Sort of like an apple, but orange.", StatusEffect.type.HEALTH, Food.type.FRUIT,      5);
-	public static Food dragonfruit = new Food("Dragon Fruit",  "Unfortunately, not a real dragon.",  StatusEffect.type.HEALTH, Food.type.FRUIT,      10);
-	public static Food meat        = new Food("Chunk of meat", "Probably not rotten.",               StatusEffect.type.HEALTH, Food.type.MEAT_OTHER, 15);
-	public static Food mushroom    = new Food("Mushroom",      "The good kind!",                     StatusEffect.type.HEALTH, Food.type.OTHER,      5);
-	public static Food fish        = new Food("Fish",          "Found in rivers and lakes.",         StatusEffect.type.HEALTH, Food.type.MEAT_FISH,  15);
-
+	
 	private static Scanner scan = new Scanner(System.in);
 	
 	
@@ -70,7 +64,7 @@ public class Game {
 	
 		/*
 		 * Asks if the user wants to load from the save file
-		 
+		 */
 		Ui.cls();
 		Ui.println("____________________________________________");
 		Ui.println("|                                           |");
@@ -101,14 +95,13 @@ public class Game {
 
 			//Runs all the tests and clears the screen
 			if (Stats.kills > Stats.highScore) Stats.highScore = Stats.kills;
-			Achievements.check();
 			Saves.save();
 			Ui.cls();
 
 			/*
 			 * MAIN GAME MENU
 			 * Able to fight and go to other places from here
-			 
+			 */
 			Ui.println("Text-Fighter " + Version.getFull());
 			Ui.println("------------------------------------------------------------------");
 			//Displays only if cheats are activated
@@ -124,7 +117,6 @@ public class Game {
 			Ui.println("--" + User.name() + "--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-			Ui.println("     First-Aid kits: " + FirstAid.get());
             Ui.println("     Potions: ");
             Ui.println("          Survival: " + Potion.get("survival"));
             Ui.println("          Recovery: " + Potion.get("recovery"));
@@ -136,16 +128,16 @@ public class Game {
 			Ui.println("--Enemy Info--");
 			Ui.println("     Enemy: " + Enemy.get().getName());
 			Ui.println("     Enemy Health: " + Enemy.get().getHeathStr());
-			Ui.println("     Enemy's First Aid Kit's: " + Enemy.get().getFirstAidKit());
+			Ui.println("     Enemy's Potion: " + Enemy.get().getEnemy_potion());
 			Ui.println("------------------------------------------------------------------");
 			Ui.println("1) Go to battle");
 			Ui.println("2) Go Home");
 			Ui.println("3) Go to the town");
-			Ui.println("4) Use First-Aid kit");
+			Ui.println("4) Use First-Aid kit x");
 			Ui.println("5) Use Potion");
-			Ui.println("6) Eat Food");
-			Ui.println("7) Use Insta-Health");
-			Ui.println("8) Use POWER");
+			Ui.println("6) Eat Food x");
+			Ui.println("7) Use Insta-Health x");
+			Ui.println("8) Use POWER x");
 			Ui.println("9) Run From Battle (You will lose any XP earned)");
 			Ui.println("10) Quit Game (Game will automatically be saved)");
 			Ui.println("------------------------------------------------------------------");
@@ -169,7 +161,7 @@ public class Game {
 					town();
 					break;
 				case 4:
-					FirstAid.use();
+				//	FirstAid.use();
 					break;
 				case 5:
 					Ui.cls();
@@ -191,13 +183,13 @@ public class Game {
 					}
 					break;
 				case 6:
-					Food.list();
+
 					break;
 				case 7:
-					InstaHealth.use();
+
 					break;
 				case 8:
-					Power.use();
+
 					break;
 				case 9:
 					Ui.cls();
@@ -215,7 +207,7 @@ public class Game {
 				default:
 					break;
 			}//Switch
-		}//While loop*/
+		}//While loop
 	}//Method 
 
 	private static void town() {
@@ -233,15 +225,14 @@ public class Game {
 			Ui.println("--Player Info--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-			Ui.println("     First-Aid kits: " + FirstAid.get());
             Ui.println("     Potions: ");
             Ui.println("          Survival: " + Potion.get("survival"));
             Ui.println("          Recovery: " + Potion.get("recovery"));
 			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
 			Ui.println("------------------------------------------------------------------");
-			Ui.println("1) Casino");
+			Ui.println("1) Casino x");
 			Ui.println("2) Home");
-			Ui.println("3) Bank");
+			Ui.println("3) Bank x");
 			Ui.println("4) Shop");
 			Ui.println("5) Upgrade Health");
 			Ui.println("6) Back");
@@ -251,13 +242,13 @@ public class Game {
 
 			switch (menuChoice) {
 				case 1:
-					Casino.menu();
+	//				Casino.menu();
 					break;
 				case 2:
 					home();
 					break;
 				case 3:
-					Bank.menu();
+	//				Bank.menu();
 					break;
 				case 4:
 					Shop.menu();
@@ -288,14 +279,13 @@ public class Game {
 			Ui.println("--Player Info--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-			Ui.println("     First-Aid kits: " + FirstAid.get());
             Ui.println("     Potions: " + (Potion.get("survival") + Potion.get("recovery")));
 			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
 			Ui.println("------------------------------------------------------------------");
 			Ui.println("1) Equip weapon");
 			Ui.println("2) Equip Armour");
 			Ui.println("3) View Item Chest");
-			Ui.println("4) Achievements");
+			Ui.println("4) Achievements x");
 			Ui.println("5) Stats");
 			Ui.println("6) About");
 			Ui.println("7) Settings");
@@ -316,14 +306,12 @@ public class Game {
 					Chest.view();
 					break;
 				case 4:
-					Achievements.view();
 					break;
 				case 5:
 					Stats.view();
 					break;
 				case 6:
 					About.view(true);
-					Achievements.viewedAbout = true;
 					break;
 				case 7:
 					menu();

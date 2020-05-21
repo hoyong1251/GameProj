@@ -2,7 +2,6 @@ package com.hotmail.kalebmarc.textfighter.player;
 
 import com.hotmail.kalebmarc.textfighter.item.Armour;
 import com.hotmail.kalebmarc.textfighter.main.Enemy;
-import com.hotmail.kalebmarc.textfighter.main.Handle;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -117,7 +116,7 @@ public class Health {
             case 200:
                 return 10;
             default:
-                Handle.error("Unable to get health level");
+         //       Handle.error("Unable to get health level");
                 return 0;
         }
     }

@@ -1,8 +1,5 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
-import com.hotmail.kalebmarc.textfighter.item.FirstAid;
-import com.hotmail.kalebmarc.textfighter.item.InstaHealth;
-import com.hotmail.kalebmarc.textfighter.item.Power;
 import com.hotmail.kalebmarc.textfighter.player.*;
 
 import java.util.Scanner;
@@ -42,18 +39,14 @@ public class Cheats {
                 break;
             case "givemeitall":
                 Coins.set(5000, false);
-                FirstAid.set(5000, false);
-                InstaHealth.set(5000, false);
                 for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
                     Weapon.arrayWeapon.get(i).setAmmo(5000, false);
                 }
-                Power.set(5000, false);
+           //     Power.set(5000, false);
                 for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
                     Weapon.arrayWeapon.get(i).owns = true;
                 }
                 Stats.timesCheated++;
-                for (int i = 0; i < Food.arrayFood.size(); i++)
-                    Food.arrayFood.get(i).setQuantity(5000);
                 Potion.set("Survival", 5000, false);
                 Potion.set("Recovery", 5000, false);
                 break;
@@ -62,19 +55,16 @@ public class Cheats {
                     Weapon.arrayWeapon.get(i).setAmmo(5000, false);
                 }
 
-                Power.set(5000, false);
+             //   Power.set(5000, false);
                 for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
                     Weapon.arrayWeapon.get(i).owns = true;
                 }
                 Stats.timesCheated++;
                 break;
             case "nomorepain":
-                FirstAid.set(1000, false);
-                InstaHealth.set(500, false);
+
                 Potion.set("Survival", 500, false);
                 Potion.set("Recovery", 500, false);
-                for (int i = 0; i < Food.arrayFood.size(); i++)
-                    Food.arrayFood.get(i).setQuantity(100);
                 Stats.timesCheated++;
                 break;
             case "healme":
@@ -97,16 +87,10 @@ public class Cheats {
                 Settings.toggleGodMode();
                 Stats.timesCheated++;
                 break;
-            case "loanshark":
-                Loan.setCurrentLoan(0);
-                Loan.setNetDue(0);
-                Stats.timesCheated++;
-                break;
-            case "thirstforfood":
-                for (int i = 0; i < Food.arrayFood.size(); i++)
-                    Food.arrayFood.get(i).setQuantity(10);
-                Stats.timesCheated++;
-                break;
+    //        case "loanshark":
+
+   //         case "thirstforfood":
+
 
         }
     }
