@@ -3,15 +3,11 @@ package com.hotmail.kalebmarc.textfighter.main;
 import com.hotmail.kalebmarc.textfighter.item.*;
 import com.hotmail.kalebmarc.textfighter.player.*;
 
-import java.awt.Dimension;
+
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 import static com.hotmail.kalebmarc.textfighter.player.Health.getStr;
 import static com.hotmail.kalebmarc.textfighter.player.Health.upgrade;
@@ -64,7 +60,7 @@ public class Game {
 	
 		/*
 		 * Asks if the user wants to load from the save file
-		 */
+		 
 		Ui.cls();
 		Ui.println("____________________________________________");
 		Ui.println("|                                           |");
@@ -89,13 +85,13 @@ public class Game {
 					Saves.save();
 				}
 				break;
-		}
+		}*/
 
 		while (true) {
 
 			//Runs all the tests and clears the screen
 			if (Stats.kills > Stats.highScore) Stats.highScore = Stats.kills;
-			Saves.save();
+			//Saves.save();
 			Ui.cls();
 
 			/*
@@ -326,14 +322,14 @@ public class Game {
 		}//While loop
 	}//Method
 
-	private static String getDifficulty() {
+	static String getDifficulty() {
 		
 		/*
 		 * DIFFICULTY SELECTION
 		 * Prompts user to get what difficulty
 		 * they want to play on. Sets variables
 		 * according.
-		 */
+		
 		Ui.cls();
 		Ui.println("_____________________________________________");
 		Ui.println("|                                           |");
@@ -356,6 +352,7 @@ public class Game {
 				Ui.cls();
 				return "Easy";
 			}
-		}
+		}*/
+		return "Easy";
 	}
 }

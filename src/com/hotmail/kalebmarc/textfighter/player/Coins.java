@@ -3,7 +3,7 @@ package com.hotmail.kalebmarc.textfighter.player;
 public class Coins {
 
     private static int coins;
-    private static int bank;
+
 
 
     private Coins() {

@@ -10,6 +10,8 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 /**
  * Created by Brendon Butler on 7/27/2016.
  */
@@ -29,7 +31,6 @@ public class Saves {
 		path = path.replaceAll("%20", " ");
 
 		setup();
-
 		/*
 		 * TODO: make a version checker that checks each part of a version ex: 1.4.1DEV
 		 * then determine whether or not it's older, current or newer.
@@ -129,18 +130,25 @@ public class Saves {
 	}
 
 	public static boolean load() {
+		path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "username.TFsave";
+		path = path.replace("username", "_" + User.name());
+		path = path.replaceAll("%20", " ");
+		
+
+
+		
 		setup();
 
 		FileReader reader = read(saveLocation);
-
-		if (reader == null) {
+//reader==null
+		if (reader==null) {
 			Ui.cls();
 			Ui.println("------------------------------");
 			Ui.println("Cannot find save file.  ");
 			Ui.println("Starting a new game...  ");
 			Ui.println("------------------------------");
 			Ui.pause();
-
+			
 			data = Collections.synchronizedMap(new LinkedHashMap<String, Object>());
 			return true;
 		}
@@ -206,7 +214,6 @@ public class Saves {
 		//Enemy
 		Enemy.set(getInteger("Battle.Current.Enemy"));
 		Enemy.get().setHealth(getInteger("Battle.Current.Enemy_Health"), getInteger("Battle.Current.Enemy_Max_Health"));
-	//	Enemy.get().setEnemy_potion(getInteger("Battle.Current.Enemy_First_Aid_Kit"));
 		Enemy.get().setEnemy_potion(getInteger("Battle.Current.Enemy_Potion"));
 
 		//Achs
@@ -221,19 +228,21 @@ public class Saves {
 	}
 
 	private static void setup() {
-		saveLocation = new File(path);
 
-		if (!saveLocation.exists())
-			try {
-				saveLocation.createNewFile();
-			} catch (IOException exception) {
-				exception.printStackTrace();
-			}
+			saveLocation = new File(path);
 
-		setupDumper();
+			if (!saveLocation.exists())
+				try {
+					saveLocation.createNewFile();
+				} catch (IOException exception) {
+					exception.printStackTrace();
+				}
 
-		yaml = new Yaml(representer, options);
-		data = Collections.synchronizedMap(new LinkedHashMap<String, Object>());
+			setupDumper();
+
+			yaml = new Yaml(representer, options);
+			data = Collections.synchronizedMap(new LinkedHashMap<String, Object>());
+		
 	}
 
 	private static void setupDumper() {

@@ -1,17 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 
 
@@ -46,7 +35,7 @@ class Menu {
                     Game.start();
 
                     //Saves the game before exiting
-                    Saves.save();
+                    Saves.save(); //마지막 종료메뉴 누르면 저장하고 종료
                     return;
                 case 2:
                     About.view(false);

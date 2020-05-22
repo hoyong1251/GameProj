@@ -1,8 +1,8 @@
 package com.hotmail.kalebmarc.textfighter.main;
-
+import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Font;
 
-import javax.swing.JFrame;
 
 class Start {
 
@@ -17,9 +17,9 @@ class Start {
         }
 
         //Runs the game
-       Menu.load();
-      
-
+     //  Menu.load();
+       MainFrame frame= new MainFrame();
+ 
         //Clears Console
         Ui.cls();
 
