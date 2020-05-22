@@ -3,63 +3,41 @@ package com.hotmail.kalebmarc.textfighter.player;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
 
 public class Potion {
-    public static int spUsed = 0;
-    public static int spLevel;
-    public static int spPrice;
+    public static int pUsed = 0;
+    public static int pLevel;
+    public static int pPrice;
     //TODO will eventually add potions to heal status ailments
     //TODO possibly add potion that gives player a temporary strength boost (Does more damage)
-    public static int rpUsed = 0;
-    public static int rpLevel;
-    public static int rpPrice;
-    private static int survivalPotion; //potion that heals 25% of health
-    private static int recoveryPotion; //potion that heals 75% of health
+    //public static int rpUsed = 0;
+    //public static int rpLevel;
+    //public static int rpPrice;
+    private static int myPotion; //potion that heals 50% of health
+    //private static int recoveryPotion; //potion that heals 75% of health
 
     private Potion() {
     }
 
-    public static int get(String kind) {
-        switch (kind.toLowerCase()) {
-            case "survival":
-                return survivalPotion;
-            case "recovery":
-                return recoveryPotion;
-            default:
-                return 0; //need to modify
-        }
+    public static int get() {
+                return myPotion;
     }
 
-    public static void set(String kind, int amount, boolean add) {
-        switch (kind.toLowerCase()) {
-            case "survival":
+    public static void set(int amount, boolean add) {
                 if (!add) {
-                    survivalPotion = amount;
+                    myPotion = amount;
                 } else {
-                    survivalPotion += amount;
-                    if (survivalPotion < 0) survivalPotion = 0;
+                    myPotion += amount;
+                    if (myPotion < 0) myPotion = 0;
                 }
-                break;
-            case "recovery":
-                if (!add) {
-                    recoveryPotion = amount;
-                } else {
-                    recoveryPotion += amount;
-                    if (recoveryPotion < 0) recoveryPotion = 0;
-                }
-                break;
-            default:
-                Ui.print("Unknown potion type: " + kind);
-        }
+
     }
 
-    public static void use(String k) {
-        String kind = k.trim().substring(0, 1).toUpperCase()
-                + k.substring(1).toLowerCase();
+    public static void use() {
         Ui.cls();
 
-        if (get(kind) <= 0) {
+        if (get() <= 0) {
 
             Ui.println("----------------------------------------------------");
-            Ui.println("You have no " + kind + " Potions left!");
+            Ui.println("You have no Potions left!");
             Ui.println("Go to the shop to buy some more.");
             Ui.println("----------------------------------------------------");
             Ui.pause();
@@ -68,26 +46,26 @@ public class Potion {
 
             Ui.println("----------------------------------------------------");
             Ui.println("You already have full health!");
-            Ui.println("You don't need to use a " + kind + " Potion!");
+            Ui.println("You don't need to use a Potion!");
             Ui.println("----------------------------------------------------");
             Ui.println("Your health: " + Health.getStr());
-            Ui.println(kind + " Potions: " + get(kind));
+            Ui.println(" Potions: " + get());
             Ui.println("----------------------------------------------------");
             Ui.pause();
 
         } else {
 
-            set(kind, -1, true);
-            int heal = (int) Math.round(healBy(kind));
+            set(-1, true);
+            int heal = (int) Math.round(healBy());
             Health.gain(heal);
-            used(kind);
+            used();
 
             Ui.println("----------------------------------------------------");
-            Ui.println("You have used a " + kind + " Potion.");
+            Ui.println("You have used a Potion.");
             Ui.println("You've gained " + heal + " health.");
             Ui.println("----------------------------------------------------");
             Ui.println("Your health: " + Health.getStr());
-            Ui.println(kind + " Potions: " + get(kind));
+            Ui.println(" Potions: " + get());
             Ui.println("----------------------------------------------------");
             Ui.pause();
 
@@ -95,30 +73,20 @@ public class Potion {
 
     }
 
-    public static double healBy(String kind) {
-        switch (kind.toLowerCase()) {
-            case "survival":
-                return Health.getOutOf() * .25;
-            case "recovery":
-                return Health.getOutOf() * .75;
-            default:
-                return 0;
-        }
+    public static double healBy() {
+
+           return Health.getOutOf() * .50;
+
     }
 
-    public static void used(String kind) {
-        switch (kind.toLowerCase()) {
-            case "survival":
-                spUsed++;
-            case "recovery":
-                rpUsed++;
-        }
+    public static void used() {
+            pUsed++;
     }
 
-    public static void buy(String kind) {
+    public static void buy() {
 
-        int level = getLevel(kind);
-        int price = getPrice(kind);
+        int level = getLevel();
+        int price = getPrice();
 
         if (Xp.getLevel() < level) {
             Ui.println("You have to be at least level " + level + " to buy this!");
@@ -126,7 +94,7 @@ public class Potion {
         } else if (price <= Coins.get()) {
             Coins.set(-price, true);
             Stats.coinsSpentOnHealth += price;
-            set(kind, 1, true);
+            set(1, true);
             Ui.println("Thank you for your purchase. Come again soon! ");
             Ui.pause();
         } else {
@@ -135,25 +103,14 @@ public class Potion {
         }
     }
 
-    public static int getLevel(String kind) {
-        switch (kind.toLowerCase()) {
-            case "survival":
-                return spLevel;
-            case "recovery":
-                return rpLevel;
-            default:
-                return 0; //need to modify
-        }
+    public static int getLevel() {
+
+                return pLevel;
+
     }
 
-    public static int getPrice(String kind) {
-        switch (kind.toLowerCase()) {
-            case "survival":
-                return spPrice;
-            case "recovery":
-                return rpPrice;
-            default:
-                return 0; //need to modify
-        }
+    public static int getPrice() {
+                return pPrice;
+
     }
 }

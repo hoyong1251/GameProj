@@ -40,8 +40,6 @@ public class Stats {
         Ui.println("   Current Enemy - " + com.hotmail.kalebmarc.textfighter.main.Enemy.get().getName());
         Ui.println("   Total Damage Dealt - " + totalDamageDealt);
         Ui.println("   Total Kills - " + totalKills);
-        Ui.println("   Bullets Fired - " + bulletsFired);
-        Ui.println("   Bullets that hit - " + bulletsThatHit);
         Ui.println("   K:D - " + killDeathRatio);
         Ui.println();
         Ui.println("Coins:");
@@ -51,15 +49,15 @@ public class Stats {
         Ui.println();
         Ui.println("Health:");
         Ui.println("   Health - " + Health.getStr());
-        Ui.println("   Potions used - " + (Potion.spUsed + Potion.rpUsed));
+        Ui.println("   Potions used - " + Potion.pUsed);
         Ui.println("   Times Died - " + Health.timesDied);
         Ui.println();
         Ui.println("Other: ");
-        Ui.println("   Cheats Enabled? - " + Cheats.enabled());
+        Ui.println("   Cheats Enabled? - " + Cheats.enabled()); //삭제
         Ui.println("   Level - " + Xp.getLevel());
         Ui.println("   Xp - " + Xp.getFull());
         Ui.println("   Total Xp gained - " + Xp.total);
-        Ui.println("   Times cheated - " + timesCheated);
+        Ui.println("   Times cheated - " + timesCheated); //삭제
         Ui.println("   Times quit - " + timesQuit);
         Ui.println();
         Ui.println("-------------------------------------------------");

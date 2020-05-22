@@ -81,7 +81,7 @@ public class Enemy {
         current.health = current.healthMax;
         current.enemy_potion = Random.RInt(Potion_MIN, Potion_MAX);
         com.hotmail.kalebmarc.textfighter.player.Xp.setBattleXp(0, false);
-        Ui.popup("You have encountered a " + current.getName(), "Encounter", JOptionPane.INFORMATION_MESSAGE);
+        Ui.popup(current.getName()+" 를 만났습니다! ", "몬스터 출현!", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
@@ -90,7 +90,7 @@ public class Enemy {
         if (found <= 2 && !Game.pipe.owns) {
             Game.pipe.owns = true;
             Weapon.set(Game.pipe);
-            Ui.popup("You have found an old pipe!", "You found something!", JOptionPane.INFORMATION_MESSAGE);
+            Ui.popup("몬스터에게서 오래된 파이프를 얻었다!", "발견! ", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -112,12 +112,12 @@ public class Enemy {
 
         //Get rewards & store in temp vars
         int tempCoin = Random.RInt(coinDropMin, coinDropMax);
-        int tempHealth = Random.RInt(0, 2);
+        int tempHealth = Random.RInt(0, 1);
         xp += com.hotmail.kalebmarc.textfighter.player.Xp.getBattleXp();
         com.hotmail.kalebmarc.textfighter.player.Xp.setBattleXp(0, false);
 
         //Prompt enemy death
-        Ui.popup("You have defeated an enemy! You've found " + tempCoin + " coins, and " + xp + "Xp!", "You've defeated an enemy!", JOptionPane.PLAIN_MESSAGE);
+        Ui.popup("몬스터를 물리쳤습니다! " + tempCoin + " 코인과  " + xp + "경험치를 얻었습니다! ", "승리! ", JOptionPane.PLAIN_MESSAGE);
 
         //Rewards
         testFoundPipe();
@@ -127,10 +127,7 @@ public class Enemy {
                 Health.gain(10);
                 break;
             case 1:
-                Potion.set("survival", 1, true);
-                break;
-            case 2:
-                Potion.set("recovery", 1, true);
+                Potion.set(1, true);
                 break;
         }
         Xp.set(xp, true);

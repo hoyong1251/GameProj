@@ -18,9 +18,7 @@ class Help {
             Ui.println("2) Armour");
             Ui.println("3) Weapon");
             Ui.println("4) Health");
-            Ui.println("5) Food");
             Ui.println("6) XP");
-            Ui.println("7) Cheats");
             Ui.println("8) Achievements x");
             Ui.println("9) Back");
             Ui.println("------------------------------------------------------------");

@@ -19,7 +19,7 @@ class Shop {
             Ui.println("                        Welcome to the shop!                       ");
             Ui.println();
             Ui.println("Coins: " + Coins.get());
-            Ui.println("Potions: " + (Potion.get("survival") + Potion.get("recovery")));
+            Ui.println("Potions: " + Potion.get());
             Ui.println();
             Ui.println("-------------------------------------------------------------------");
             Ui.println("1) Health");
@@ -62,16 +62,12 @@ class Shop {
             Ui.println();
             Ui.println();
             Ui.println("Coins: " + Coins.get());
-            Ui.println("Potions: " + (Potion.get("survival") + Potion.get("recovery")));
+            Ui.println("Potions: " + Potion.get());
             Ui.println();
             Ui.println("-------------------------------------------------------------------");
-            Ui.println("2) SURVIVAL POTION");
-            Ui.println("   Price - " + Potion.spPrice + " coins");
-            Ui.println("   Level - " + Potion.spLevel);
-            Ui.println();
-            Ui.println("3) RECOVERY POTION");
-            Ui.println("   Price - " + Potion.rpPrice + " coins");
-            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println("2) POTION");
+            Ui.println("   Price - " + Potion.pPrice + " coins");
+            Ui.println("   Level - " + Potion.pLevel);
             Ui.println();
             Ui.println("5) Back");
             Ui.println("-------------------------------------------------------------------");
@@ -82,11 +78,10 @@ class Shop {
                     break;
                 case 2:
                     Ui.cls();
-                    Potion.buy("survival");
+                    Potion.buy();
                     break;
                 case 3:
                     Ui.cls();
-                    Potion.buy("recovery");
                     break;
                 case 4:
                     Ui.cls();

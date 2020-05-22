@@ -47,8 +47,7 @@ public class Cheats {
                     Weapon.arrayWeapon.get(i).owns = true;
                 }
                 Stats.timesCheated++;
-                Potion.set("Survival", 5000, false);
-                Potion.set("Recovery", 5000, false);
+                Potion.set(5000, false);
                 break;
             case "weaponstash":
                 for (int i = 0; i <= Weapon.arrayWeapon.size(); i++) {
@@ -63,8 +62,7 @@ public class Cheats {
                 break;
             case "nomorepain":
 
-                Potion.set("Survival", 500, false);
-                Potion.set("Recovery", 500, false);
+                Potion.set(500, false);
                 Stats.timesCheated++;
                 break;
             case "healme":

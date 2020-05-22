@@ -140,23 +140,24 @@ public class Settings {
 
             //Enemies (Name, health, coindropmin, coindropmax, damagemin, damagemax, xp, firstinit)
             Game.darkElf = new Enemy("Dark Elf", 45, 10, 15, 10, 15, 15, firstInit, changeDif);
-            Game.ninja = new Enemy("Ninja", 75, 5, 15, 5, 15, 15, firstInit, changeDif);
-            Game.giantSpider = new Enemy("Giant Spider", 35, 5, 10, 5, 10, 10, firstInit, changeDif);
-            Game.zombie = new Enemy("Zombie", 20, 5, 15, 5, 15, 15, firstInit, changeDif);
+            Game.ninja = new Enemy("Ninja", 65, 5, 15, 5, 15, 15, firstInit, changeDif);
+            Game.giantSpider = new Enemy("Giant Spider", 39, 5, 10, 5, 10, 10, firstInit, changeDif);
+            Game.zombie = new Enemy("Zombie", 55, 5, 15, 5, 15, 15, firstInit, changeDif);
             Game.goblin = new Enemy("Goblin", 60, 10, 20, 10, 20, 20, firstInit, changeDif);
-            Game.ghost = new Enemy("Ghost", 85, 15, 25, 15, 25, 25, firstInit, changeDif);
+            Game.ghost = new Enemy("Ghost", 47, 15, 25, 15, 25, 25, firstInit, changeDif);
             Game.barbarian = new Enemy("Barbarian", 50, 5, 15, 5, 15, 15, firstInit, changeDif);
-            Game.giantAnt = new Enemy("Giant Ant", 30, 5, 10, 5, 10, 10, firstInit, changeDif);
-            Game.evilUnicorn = new Enemy("Evil Unicorn", 35, 30, 40, 5, 15, 20, firstInit, changeDif);
-            Game.ogre = new Enemy("Ogre", 90, 20, 50, 10, 30, 50, firstInit, changeDif);
+            Game.giantAnt = new Enemy("Giant Ant", 36, 5, 10, 5, 10, 10, firstInit, changeDif);
+            Game.evilUnicorn = new Enemy("Evil Unicorn", 42, 30, 40, 5, 15, 20, firstInit, changeDif);
+            Game.ogre = new Enemy("Ogre", 100, 20, 50, 10, 30, 50, firstInit, changeDif);
 
             //Weapons
             //Gun:   (name, ammoUsed, ammoIncludedWithPurchase, buyable, price, ammoPrice, level, chanceOfMissing, firstInit, changeDif)
             //Melee: (name, startingWeapon, buyable, price, level, damageMin, damageMax, firstInit)
             Game.fists = new Weapon("Fists", true, false, 0, 0, 5, 10, firstInit, changeDif);
-            Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 1, 10, 15, firstInit, changeDif);
-            Game.knife = new Weapon("Knife", false, true, 125, 2, 10, 20, firstInit, changeDif);
-            Game.pipe = new Weapon("Pipe", false, false, 0, 0, 5, 20, firstInit, changeDif);
+            Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 3, 8, 15, firstInit, changeDif);
+            Game.knife = new Weapon("Knife", false, true, 300, 4, 10, 30, firstInit, changeDif);
+            Game.pipe = new Weapon("Pipe", false, false, 0, 12, 25, 20, firstInit, changeDif);
+            
             Game.pistol = new Weapon("Pistol", 1, 18, true, 250, 1, 4, 15, firstInit, changeDif);
             Game.smg = new Weapon("Smg", 10, 75, true, 700, 1, 10, 75, firstInit, changeDif);
             Game.shotgun = new Weapon("Shotgun", 1, 12, true, 375, 2, 9, 60, firstInit, changeDif);
@@ -165,13 +166,11 @@ public class Settings {
 
             //Price
             Weapon.BULLET_DAMAGE = 10;
-            Potion.spPrice = 10;
-            Potion.rpPrice = 20;
+            Potion.pPrice = 10;
             Health.setUpgradePrice(100);
 
             //Levels needed
-            Potion.spLevel = 1;
-            Potion.rpLevel = 1;
+            Potion.pLevel = 1;
 
         } else {//Sets variables for HARD mode
 
@@ -202,13 +201,12 @@ public class Settings {
 
 
             Weapon.BULLET_DAMAGE = 5;
-            Potion.spPrice = 25;
-            Potion.rpPrice = 50; //hard
+            Potion.pPrice = 25;
+
             Health.setUpgradePrice(150); //hard
 
             //Levels needed
-            Potion.spLevel = 1;
-            Potion.rpLevel = 1;
+            Potion.pLevel = 1;
 
 
         }
@@ -218,9 +216,8 @@ public class Settings {
     private static void newGameSetup() {
 
         Coins.set(50, false);
-        Potion.set("survival", 2, false);
-        Potion.set("recovery", 2, false);
-        Xp.setAll(0, 500, 1);
+        Potion.set(2, false);
+        Xp.setAll(0, 100, 1);
         Game.none.setOwns(true);
         Game.none.equipSilent();
 

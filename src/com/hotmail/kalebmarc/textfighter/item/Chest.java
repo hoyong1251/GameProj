@@ -15,9 +15,7 @@ public class Chest {
         Ui.println("------------------------------");
         Ui.println("          Item Chest          ");
         Ui.println();
-        Ui.println("     Potions: ");
-        Ui.println("          Survival: " + Potion.get("survival"));
-        Ui.println("          Recovery: " + Potion.get("recovery"));
+        Ui.println("     Potions: "+Potion.get());
         Ui.println("Coins: " + Coins.get());
         for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
             if (Weapon.arrayWeapon.get(i).owns()) {

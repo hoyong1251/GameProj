@@ -58,10 +58,9 @@ public class Saves {
 		set("User.XP.battleXp", Xp.getBattleXp());
 
 		//Potions
-		set("Stats.Potions.Survival.Used", Potion.spUsed);
-		set("Stats.Potions.Recovery.Used", Potion.rpUsed);
-		set("User.Potions.Survival", Potion.get("survival"));
-		set("User.Potions.Recovery", Potion.get("recovery"));
+		set("Stats.Potions.Used", Potion.pUsed);
+		set("User.Potions", Potion.get());
+
 
 		//Settings
 		set("Settings.Difficulty.Level", Settings.getDif());
@@ -175,10 +174,8 @@ public class Saves {
 		Xp.setBattleXp(getInteger("User.XP.battleXp"), false);
 
 		//Potions
-		Potion.spUsed = getInteger("Stats.Potions.Survival.Used");
-		Potion.rpUsed = getInteger("Stats.Potions.Recovery.Used");
-		Potion.set("survival", getInteger("User.Potions.Survival"), false);
-		Potion.set("recovery", getInteger("User.Potions.Recovery"), false);
+		Potion.pUsed = getInteger("Stats.Potions.Used");
+		Potion.set(getInteger("User.Potions"), false);
 
 		//Settings
 		Settings.setDif(getString("Settings.Difficulty.Level"), false, false);

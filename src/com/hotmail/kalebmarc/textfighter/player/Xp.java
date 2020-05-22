@@ -33,7 +33,7 @@ public class Xp {
 
 			Ui.popup("You've leveled up! You are now level " + (level + 1) + "!\nYou have been rewarded 100 coins!", "Level Up!", JOptionPane.INFORMATION_MESSAGE);
 			xp = 0;
-			xpNeeded += 500;
+			xpNeeded += 100;
 			level++;
             Coins.set(100, true);
 		}

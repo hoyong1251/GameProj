@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.hotmail.kalebmarc.textfighter.player.Health;
+import com.hotmail.kalebmarc.textfighter.item.*;
+import com.hotmail.kalebmarc.textfighter.player.*;
 
  
        

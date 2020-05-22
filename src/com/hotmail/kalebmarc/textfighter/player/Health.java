@@ -49,18 +49,18 @@ public class Health {
             health = outOf;
         }
     }
-
+/*
     private static void lose(int h) {
         health -= h;
         if (health <= 0) {
             die();
         }
     }
-
+*/
     public static void die() {
         float randomCoinLoss = ThreadLocalRandom.current().nextInt(25, 51); //random between 25% and 50%
         int coinsLost = Math.round(Coins.get() * (randomCoinLoss / 100));
-        Ui.popup("You have died! You lost " + coinsLost + " coin(s). ", "You've died!", JOptionPane.WARNING_MESSAGE);
+        Ui.popup("죽었습니다! 코인을 " + coinsLost + " 만큼 잃었습니다! ", "사망!", JOptionPane.WARNING_MESSAGE);
         Coins.set(-(coinsLost), true);
         Stats.kills = 0;
         Health.set(Health.getOutOf());
@@ -75,17 +75,17 @@ public class Health {
 
         double resist = Armour.getEquipped().getDamResist() / 100.0;
         damage = (int) (damage - (damage * resist));
-
+        health-=damage;
         Ui.cls();
         Ui.println("----------------------------------------------------");
         Ui.println("You have been hit by a " + Enemy.get().getName() + "!");
         Ui.println("You lost " + damage + " health.");
         Ui.println("----------------------------------------------------");
-        Ui.println("Your health: " + (health - damage));
+        Ui.println("Your health: " + getStr());
         Ui.println("Enemy health: " + Enemy.get().getHeathStr());
         Ui.println("----------------------------------------------------");
         Ui.pause();
-        Health.lose(damage);
+        if(health<=0) die();
 
     }
 

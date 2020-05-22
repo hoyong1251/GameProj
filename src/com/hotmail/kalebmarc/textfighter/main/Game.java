@@ -113,9 +113,7 @@ public class Game {
 			Ui.println("--" + User.name() + "--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-            Ui.println("     Potions: ");
-            Ui.println("          Survival: " + Potion.get("survival"));
-            Ui.println("          Recovery: " + Potion.get("recovery"));
+            Ui.println("     Potions: "+ Potion.get());
 			Ui.println("     Equipped armour: " + Armour.getEquipped().toString());
 			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
 			//Displays ammo only if a weapon is equipped
@@ -126,29 +124,23 @@ public class Game {
 			Ui.println("     Enemy Health: " + Enemy.get().getHeathStr());
 			Ui.println("     Enemy's Potion: " + Enemy.get().getEnemy_potion());
 			Ui.println("------------------------------------------------------------------");
-			Ui.println("1) Go to battle");
-			Ui.println("2) Go Home");
-			Ui.println("3) Go to the town");
+			Ui.println("1) Go to battle popup");
+			Ui.println("2) Go Home new panel");
+			Ui.println("3) Go to the town replace shop(default shop, upgrade health)");
 			Ui.println("4) Use First-Aid kit x");
 			Ui.println("5) Use Potion");
 			Ui.println("6) Eat Food x");
 			Ui.println("7) Use Insta-Health x");
 			Ui.println("8) Use POWER x");
-			Ui.println("9) Run From Battle (You will lose any XP earned)");
-			Ui.println("10) Quit Game (Game will automatically be saved)");
+			Ui.println("9) Run From Battle (You will lose any XP earned) x");
+			Ui.println("10) Quit Game (Game will automatically be saved) savegame exit(0)");
 			Ui.println("------------------------------------------------------------------");
 
 			switch (Ui.getValidInt()) {
 				case 1:
 					int fightPath = Random.RInt(100);
-
-					if (Weapon.get().getName().equals("Sniper")) {
-						if (fightPath <= 30) Enemy.get().dealDamage();
-						if (fightPath > 30) sniper.dealDam();
-					} else {
 						if (fightPath <= 50) Enemy.get().dealDamage();
 						if (fightPath > 50) Weapon.get().dealDam();
-					}
 					break;
 				case 2:
 					home();
@@ -161,16 +153,12 @@ public class Game {
 					break;
 				case 5:
 					Ui.cls();
-					Ui.println("Which potion would you like to use?");
-					Ui.println("1) Survival Potion");
-					Ui.println("2) Recovery Potion");
+					Ui.println("Potion use? ");
+					Ui.println("1) Potion");
 					Ui.println("3) Back");
 					switch (Ui.getValidInt()) {
 						case 1:
-							Potion.use("survival");
-							break;
-						case 2:
-							Potion.use("recovery");
+							Potion.use();
 							break;
 						case 3:
 							break;
@@ -221,13 +209,11 @@ public class Game {
 			Ui.println("--Player Info--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-            Ui.println("     Potions: ");
-            Ui.println("          Survival: " + Potion.get("survival"));
-            Ui.println("          Recovery: " + Potion.get("recovery"));
+            Ui.println("     Potions: "+ Potion.get());
 			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
 			Ui.println("------------------------------------------------------------------");
 			Ui.println("1) Casino x");
-			Ui.println("2) Home");
+			Ui.println("2) Home x");
 			Ui.println("3) Bank x");
 			Ui.println("4) Shop");
 			Ui.println("5) Upgrade Health");
@@ -241,7 +227,7 @@ public class Game {
 	//				Casino.menu();
 					break;
 				case 2:
-					home();
+					//home();
 					break;
 				case 3:
 	//				Bank.menu();
@@ -275,17 +261,18 @@ public class Game {
 			Ui.println("--Player Info--");
 			Ui.println("     Health: " + getStr());
 			Ui.println("     Coins: " + Coins.get());
-            Ui.println("     Potions: " + (Potion.get("survival") + Potion.get("recovery")));
+            Ui.println("     Potions: " + Potion.get());
 			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
+			//아머출력
 			Ui.println("------------------------------------------------------------------");
 			Ui.println("1) Equip weapon");
 			Ui.println("2) Equip Armour");
 			Ui.println("3) View Item Chest");
 			Ui.println("4) Achievements x");
-			Ui.println("5) Stats");
-			Ui.println("6) About");
-			Ui.println("7) Settings");
-			Ui.println("8) Help");
+			Ui.println("5) Stats"); //팝업안내
+			Ui.println("6) About x");
+			Ui.println("7) Settings x");
+			Ui.println("8) Help"); //패널 뒤 팝업
 			Ui.println("9) Back");
 			Ui.println("------------------------------------------------------------------");
 
