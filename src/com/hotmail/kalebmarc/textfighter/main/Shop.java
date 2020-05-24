@@ -1,18 +1,21 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
 import com.hotmail.kalebmarc.textfighter.item.Armour;
 import com.hotmail.kalebmarc.textfighter.player.Coins;
 import com.hotmail.kalebmarc.textfighter.player.Potion;
 import com.hotmail.kalebmarc.textfighter.player.Stats;
 import com.hotmail.kalebmarc.textfighter.player.Xp;
 
-import java.util.ArrayList;
-
 class Shop {
     private Shop() {
     }
 
     public static void menu() {
+    	
         while (true) {
             Ui.cls();
             Ui.println("-------------------------------------------------------------------");
@@ -22,11 +25,11 @@ class Shop {
             Ui.println("Potions: " + Potion.get());
             Ui.println();
             Ui.println("-------------------------------------------------------------------");
-            Ui.println("1) Health");
-            Ui.println("2) Weapons/Ammo");
-            Ui.println("3) Body Armour");
-            Ui.println("4) Property");
-            Ui.println("5) XP");
+            Ui.println("1) 포션");
+            Ui.println("2) 무기");
+            Ui.println("3) 방어구");
+            Ui.println("4) 체력 업그레이드 ");
+            Ui.println("5) XP"); 
             Ui.println("6) Back");
             Ui.println("-------------------------------------------------------------------");
             switch (Ui.getValidInt()) {
@@ -40,7 +43,7 @@ class Shop {
                     armour();
                     break;
                 case 4:
-                    property();
+                  //  property();
                     break;
                 case 5:
                     xp();

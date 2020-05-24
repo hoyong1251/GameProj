@@ -1,6 +1,8 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
+import com.hotmail.kalebmarc.textfighter.item.Armour;
 import com.hotmail.kalebmarc.textfighter.player.Coins;
+import com.hotmail.kalebmarc.textfighter.player.Health;
 import com.hotmail.kalebmarc.textfighter.player.Stats;
 import com.hotmail.kalebmarc.textfighter.player.Xp;
 
@@ -97,55 +99,45 @@ public class Weapon {
     }
 
     public static void choose() {
-        while (true) {
-            Ui.cls();
-            Ui.println("----------------------------");
-            Ui.println("Equip new weapon");
-            Ui.println();
-            Ui.println("Ammo: " + current.getAmmo());
-            Ui.println("Equipped weapon: " + current.getName());
-            Ui.println("----------------------------");
-            int j = 0;
-            int[] offset = new int[arrayWeapon.size()];
-            for (int i = 0; i < arrayWeapon.size(); i++) {
-                if (arrayWeapon.get(i).owns()) {
-                    Ui.println((j + 1) + ") " + arrayWeapon.get(i).getName());
-                    offset[j] = i - j;
-                    j++;
-                }
-            }
-            Ui.println((j + 1) + ") Back");
+    	String msg="";
+        msg+="----------------------------\n";
+        msg+="무기를 장착합니다\n";
+        msg+="장착중인 무기: " +current.getName()+"\n";
+        msg+="----------------------------\n\n";
+       
+        for (int i = 0; i < arrayWeapon.size(); i++) {
+           
+               msg+=(i + 1) + ") " + arrayWeapon.get(i).getName()+"\n";
+            	
+        	}
+        
+        JOptionPane option =new JOptionPane();
+        
+        String result=JOptionPane.showInputDialog(msg+"착용할 장비의 번호를 입력해주세요");
+        if(result!=null) {
+        int select=Integer.parseInt(result);
 
-            while (true) {
+        //Get valid weapon index
 
-                int menuItem = Ui.getValidInt();
-
-                try {
-
-                    //choices other than options in the array go here:
-                    if (menuItem == (j + 1) || menuItem > j)
-                        return;
-
-                    //reverts back to Weapon indexing
-                    menuItem--;
-                    menuItem = menuItem + offset[menuItem];
-
-                    //Testing to make sure the option is valid goes here:
-                    if (!arrayWeapon.get(menuItem).owns) {
-                        Ui.msg("You do not own this weapon!");
-                        return;
-                    }
-
-                    current = arrayWeapon.get(menuItem);
-                    Ui.msg("You have equipped a " + arrayWeapon.get(menuItem).getName());
+            try { //This is probably pretty bad practice. Using exceptions as a functional part of the program.. Use variables!
+                //Results go here:
+            	select--;
+                if (!arrayWeapon.get(select).owns) {
+                	Ui.popup("아직 이 무기를 획득하지 못했습니다.", "경고", JOptionPane.INFORMATION_MESSAGE);
                     return;
-
-                } catch (Exception e) {
-                    Ui.println();
-                    Ui.println(menuItem + " is not an option.");
                 }
+
+                current = arrayWeapon.get(select);
+                Ui.popup(arrayWeapon.get(select).getName()+" 을 장착했습니다!", "성공",JOptionPane.INFORMATION_MESSAGE);
+                return;
+
+            } catch (Exception e) {
+                Ui.popup((select + 1) + "번은 없는 메뉴입니다","경고",JOptionPane.INFORMATION_MESSAGE);
             }
-        }
+            }
+        else return;
+
+        
     }
 
     private static void noAmmo() {
@@ -180,19 +172,20 @@ public class Weapon {
         return this.ammo;
     }
 
-    public void dealDam() {
+    public String dealDam() {
         int damageDealt = 0;
-
+        damageDealt = Random.RInt(this.damageMin, this.damageMax);
+/*
         if (this.melee) {
             /*
              * Melee Attack
-			 */
+			 
             damageDealt = Random.RInt(this.damageMin, this.damageMax);
         } else {
 
 			/*
 			 * Gun Attack
-			 */
+			 
             if (getAmmo() >= this.ammoUsed) {
 
                 for (int i = 1; i <= this.ammoUsed; i++) {
@@ -211,25 +204,30 @@ public class Weapon {
                 damageDealt = 0;
             }
         }
-
+*/
         //Display stuff
         com.hotmail.kalebmarc.textfighter.player.Stats.totalDamageDealt += damageDealt;
         com.hotmail.kalebmarc.textfighter.player.Xp.setBattleXp(damageDealt, true);
-        if(!Enemy.get().takeDamage(damageDealt)) { // !dead
-	        Ui.cls();
-	        Ui.println("----------------------------------------------------");
-	        Ui.println("You have attacked a " + Enemy.get().getName() + "!");
-	        Ui.println("You dealt " + damageDealt + " damage with a " + this.name);
-	        Ui.println("----------------------------------------------------");
-	        Ui.println("Your health: " + com.hotmail.kalebmarc.textfighter.player.Health.getStr());
-	        Ui.println("Enemy health: " + Enemy.get().getHeathStr());
-	        Ui.println("----------------------------------------------------");
-	        Ui.pause();
-	
-	        if (Enemy.get().getHealth() <= Enemy.get().getHealthMax() / 3){
-	            Enemy.get().usePotion();
-	        }
-        } 
+        String msg="";
+        if (Enemy.get().getHealth() <= Enemy.get().getHealthMax() / 3){
+           if( Enemy.get().usePotion()) {
+            Ui.popup(" "+ Enemy.get().getName()+ " 가 포션을 사용했습니다. 몬스터 체력이 20 올랐습니다\n"+"\tEnemy health: "+Enemy.get().getHeathStr(), "", JOptionPane.INFORMATION_MESSAGE);
+           }
+          }
+        
+        double resist = Armour.getEquipped().getDamResist() / 100.0;
+        damageDealt = (int) (damageDealt - (damageDealt * resist));
+        Health.health-=damageDealt;
+        msg+="----------------------------------------------------\n";
+        msg+=" " + Enemy.get().getName() + " 에게 공격 당했습니다! \n";
+        msg+=User.name()+"이(가) " + damageDealt + " 만큼 체력을 잃었습니다\n";
+       	msg+="----------------------------------------------------\n";
+        msg+="내 체력: " + Health.getStr()+"\n";
+        msg+="몬스터 체력: " + Enemy.get().getHeathStr()+"\n";
+        if(Health.health<=0) {Health.die(); msg="부활 합니다....";}
+        
+        
+		return msg; 
     }
 
     public void viewAbout() {

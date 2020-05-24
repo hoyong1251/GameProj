@@ -3,6 +3,8 @@ package com.hotmail.kalebmarc.textfighter.player;
 import com.hotmail.kalebmarc.textfighter.item.Armour;
 import com.hotmail.kalebmarc.textfighter.main.Enemy;
 import com.hotmail.kalebmarc.textfighter.main.Ui;
+import com.hotmail.kalebmarc.textfighter.main.User;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;
@@ -10,7 +12,7 @@ import javax.swing.*;
 public class Health {
 
     public static int timesDied;
-    private static int health;
+    public static int health;
     private static int outOf;
     //Constants
     private static int UPGRADE_PRICE;
@@ -72,19 +74,17 @@ public class Health {
         if (Settings.getGodMode()) {
             damage = 0;
         }
-
+        String msg=null;
         double resist = Armour.getEquipped().getDamResist() / 100.0;
         damage = (int) (damage - (damage * resist));
         health-=damage;
-        Ui.cls();
-        Ui.println("----------------------------------------------------");
-        Ui.println("You have been hit by a " + Enemy.get().getName() + "!");
-        Ui.println("You lost " + damage + " health.");
-        Ui.println("----------------------------------------------------");
-        Ui.println("Your health: " + getStr());
-        Ui.println("Enemy health: " + Enemy.get().getHeathStr());
-        Ui.println("----------------------------------------------------");
-        Ui.pause();
+        msg+="----------------------------------------------------\n";
+        msg+=" " + Enemy.get().getName() + " 에게 공격 당했습니다! \n";
+        msg+=User.name()+"이(가) " + damage + " 만큼 체력을 잃었습니다\n";
+       	msg+="----------------------------------------------------\n";
+        msg+="내 체력: " + getStr()+"\n";
+        msg+="몬스터 체력: " + Enemy.get().getHeathStr()+"\n";
+      //  Ui.println("----------------------------------------------------");
         if(health<=0) die();
 
     }

@@ -1,5 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
+import static com.hotmail.kalebmarc.textfighter.player.Health.getStr;
 import static com.hotmail.kalebmarc.textfighter.player.Settings.setDif;
 
 import java.awt.Color;
@@ -20,9 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.hotmail.kalebmarc.textfighter.player.Health;
 import com.hotmail.kalebmarc.textfighter.item.*;
 import com.hotmail.kalebmarc.textfighter.player.*;
+import com.hotmail.kalebmarc.textfighter.main.*;
+import java.awt.BorderLayout;
 
  
        
@@ -44,9 +46,13 @@ class ImagePanel extends JPanel{
 	}
 }
 
+
+
+
+
 public class MainFrame {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField txtFf;
 
 	/**
@@ -69,11 +75,15 @@ public class MainFrame {
 	public MainFrame() {
 		initialize();
 	}
-
+	public JFrame getFrame(){
+		return this.frame;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Game Game=new Game();
+		//Weapon Weapon=new Weapon();
 		frame = new JFrame();
 		frame.setTitle("Text-Fighter by hoyong");
 		frame.setPreferredSize(new Dimension(500,700));
@@ -82,10 +92,12 @@ public class MainFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
+	
 		
 		ImagePanel panel= new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\StartImage.jpg").getImage());
 
 
+		
 
 		
 		ImagePanel BgImage= new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\StartImage.jpg").getImage());
@@ -93,6 +105,8 @@ public class MainFrame {
 		frame.getContentPane().add(BgImage);
 		frame.pack();
 		BgImage.setLayout(null);
+		
+
 		
 		JLabel lblNewLabel = new JLabel("---------------------------------");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 17));
@@ -116,7 +130,7 @@ public class MainFrame {
 		lblNewLabel_3.setBounds(97, 61, 306, 55);
 		BgImage.add(lblNewLabel_3);
 		
-		JButton btnNewButton = new JButton("game start");
+		JButton btnNewButton = new JButton("\uAC8C\uC784 \uC2DC\uC791");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BgImage.setVisible(false);
@@ -125,29 +139,29 @@ public class MainFrame {
 		});
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBackground(new Color(192, 192, 192));
-		btnNewButton.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 16));
+		btnNewButton.setFont(new Font("나눔고딕", Font.BOLD, 16));
 		btnNewButton.setBounds(186, 426, 121, 37);
 		BgImage.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("about\r\n");
+		JButton btnNewButton_1 = new JButton("\uAC8C\uC784 \uC815\uBCF4");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				About.view(false);
 			}
 		});
 		btnNewButton_1.setBackground(new Color(192, 192, 192));
-		btnNewButton_1.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 16));
+		btnNewButton_1.setFont(new Font("나눔고딕", Font.BOLD, 16));
 		btnNewButton_1.setBounds(186, 499, 121, 37);
 		BgImage.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("exit");
+		JButton btnNewButton_2 = new JButton("\uAC8C\uC784 \uC885\uB8CC");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		btnNewButton_2.setBackground(new Color(192, 192, 192));
-		btnNewButton_2.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 16));
+		btnNewButton_2.setFont(new Font("나눔고딕", Font.BOLD, 16));
 		btnNewButton_2.setBounds(186, 564, 121, 37);
 		BgImage.add(btnNewButton_2);
 		
@@ -170,7 +184,7 @@ public class MainFrame {
 		panel.add(txtFf);
 		txtFf.setColumns(10);
 		
-		JButton btnNewButton_4 = new JButton("load game");
+		JButton btnNewButton_4 = new JButton("\uBD88\uB7EC\uC624\uAE30");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			File f= new File("C:\\Users\\j9794\\git\\Text-Fighter\\target\\classes\\_"+User.name()+".TFsave");
@@ -180,18 +194,21 @@ public class MainFrame {
 			}
 			else {
 				Saves.load();
+				panel.setVisible(false);
+				frame.dispose();
 				Game.start();
+				
 				}
 			}
 		});
 		btnNewButton_4.setBackground(new Color(192, 192, 192));
-		btnNewButton_4.setFont(new Font("Bahnschrift", Font.BOLD, 13));
+		btnNewButton_4.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnNewButton_4.setBounds(88, 180, 100, 35);
 		panel.add(btnNewButton_4);
 		btnNewButton_4.setVisible(false);
 		
 		
-		JButton btnNewButton_5 = new JButton("new game");
+		JButton btnNewButton_5 = new JButton("\uC0C8 \uAC8C\uC784");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -202,7 +219,11 @@ public class MainFrame {
 					Health.set(100, 100);
 					Enemy.encounterNew();
 					Saves.save();
+					panel.setVisible(false);
+					frame.dispose();
 					Game.start();
+
+					
 				}
 				else {
 				int result=JOptionPane.showConfirmDialog(null, "파일이 이미 존재합니다 \n 새로운 게임을 진행하면 기존 데이터가 삭제될수 있습니다\n 계속하시겠습니까? \n\n 아니오 선택시 게임종료", "경고", JOptionPane.YES_NO_OPTION);
@@ -212,6 +233,8 @@ public class MainFrame {
 					Health.set(100, 100);
 					Enemy.encounterNew();
 					Saves.save();
+					panel.setVisible(false);
+					frame.dispose();
 					Game.start();
 				}
 				else {
@@ -221,12 +244,12 @@ public class MainFrame {
 				}		
 		});
 		btnNewButton_5.setBackground(new Color(192, 192, 192));
-		btnNewButton_5.setFont(new Font("Bahnschrift", Font.BOLD, 13));
+		btnNewButton_5.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnNewButton_5.setBounds(285, 180, 100, 35);
 		panel.add(btnNewButton_5);
 		btnNewButton_5.setVisible(false);
 		
-		JButton btnNewButton_3 = new JButton("ok");
+		JButton btnNewButton_3 = new JButton("\uD655\uC778");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String str=txtFf.getText();
@@ -242,19 +265,21 @@ public class MainFrame {
 		panel.add(btnNewButton_3);
 		
 
-	
-
 		
+		
+	
 	}
 	
-	
-	
-	
-	
+
 
 	
 	
 	
 
-	
 }
+
+	
+	
+
+	
+

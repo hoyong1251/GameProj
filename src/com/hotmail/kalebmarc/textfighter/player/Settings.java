@@ -156,14 +156,14 @@ public class Settings {
             Game.fists = new Weapon("Fists", true, false, 0, 0, 5, 10, firstInit, changeDif);
             Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 3, 8, 15, firstInit, changeDif);
             Game.knife = new Weapon("Knife", false, true, 300, 4, 10, 30, firstInit, changeDif);
-            Game.pipe = new Weapon("Pipe", false, false, 0, 12, 25, 20, firstInit, changeDif);
-            
+            Game.pipe = new Weapon("Pipe", false, false, 0, 0, 10, 20, firstInit, changeDif);
+       /*     
             Game.pistol = new Weapon("Pistol", 1, 18, true, 250, 1, 4, 15, firstInit, changeDif);
             Game.smg = new Weapon("Smg", 10, 75, true, 700, 1, 10, 75, firstInit, changeDif);
             Game.shotgun = new Weapon("Shotgun", 1, 12, true, 375, 2, 9, 60, firstInit, changeDif);
             Game.rifle = new Weapon("Rifle", 1, 18, true, 275, 1, 5, 10, firstInit, changeDif);
             Game.sniper = new Weapon("Sniper", 1, 10, true, 700, 2, 7, 0, firstInit, changeDif);
-
+	*/
             //Price
             Weapon.BULLET_DAMAGE = 10;
             Potion.pPrice = 10;

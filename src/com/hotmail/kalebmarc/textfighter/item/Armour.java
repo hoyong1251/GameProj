@@ -6,6 +6,8 @@ import com.hotmail.kalebmarc.textfighter.player.Xp;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Armour {
 
     private static ArrayList<Armour> armours = new ArrayList<>(3);
@@ -45,45 +47,39 @@ public class Armour {
     }
 
     public static void choose() {
-        while (true) {
-            Ui.cls();
-            Ui.println("----------------------------");
-            Ui.println("Equip new armour");
-            Ui.println();
-            Ui.println("Equipped: " + getEquipped().toString());
-            Ui.println("----------------------------");
-            int j = 0;
-            int[] offset = new int[getArmours().size()];
+    	String msg="";
+            msg+="----------------------------\n";
+            msg+="방어구를 장착합니다\n";
+            msg+="장착중인 방어구: " + getEquipped().toString()+"\n";
+            msg+="----------------------------\n\n";
+           
             for (int i = 0; i < getArmours().size(); i++) {
-                if (getArmours().get(i).isOwns()) {
-                    Ui.println((j + 1) + ") " + getArmours().get(i).getName());
-                    offset[j] = i - j;
-                    j++;
-                }
-            }
+               
+                   msg+=(i + 1) + ") " + getArmours().get(i).getName()+"\n";
+                	
+            	}
+            
+            JOptionPane option =new JOptionPane();
+            
+            String result=JOptionPane.showInputDialog(msg+"착용할 장비의 번호를 입력해주세요");
+            if(result!=null) {
+            int select=Integer.parseInt(result);
 
             //Get valid weapon index
-            while (true) {//Make it easy to break, without going back to main store menu
-
-                int menuItem = Ui.getValidInt();
 
                 try { //This is probably pretty bad practice. Using exceptions as a functional part of the program.. Use variables!
-
-                    //reverts back to Weapon indexing
-                    menuItem--;
-                    menuItem = menuItem + offset[menuItem];
-
                     //Results go here:
-                    Armour.getArmours().get(menuItem).equip();
+                	select--;
+                    Armour.getArmours().get(select).equip();
                     return;
 
                 } catch (Exception e) {
-                    Ui.println();
-                    Ui.println((menuItem + 1) + " is not an option.");
+                    Ui.popup((select + 1) + "번은 없는 메뉴입니다","경고",JOptionPane.INFORMATION_MESSAGE);
+                }
                 }
             }
-        }
-    }
+        
+    
 
     public String getName() {
         return this.name;
@@ -132,14 +128,14 @@ public class Armour {
 
     public void equip() {
         if (!(this.owns)) {
-            Ui.msg("You do not own this.");
+            Ui.popup("아직 이 방어구를 획득하지 못했습니다.", "경고", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         this.equipped = true;//To make sure something is already equipped
         getEquipped().unequip();
         this.equipped = true;
-        Ui.msg("You have equipped " + this.toString());
+        Ui.popup(this.toString()+" 을 장착했습니다!", "성공",JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void equipSilent() {

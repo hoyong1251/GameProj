@@ -6,52 +6,6 @@ class Help {
     private Help() {
     }
 
-    public static void view() {
-        while (true) {
-            Ui.cls();
-            Ui.println("------------------------------------------------------------");
-            Ui.println("                         HELP MENU                          ");
-            Ui.println("Here you can find (almost) all the information you need to");
-            Ui.println("know about Text-Fighter.");
-            Ui.println("------------------------------------------------------------");
-            Ui.println("1) Enemy");
-            Ui.println("2) Armour");
-            Ui.println("3) Weapon");
-            Ui.println("4) Health");
-            Ui.println("6) XP");
-            Ui.println("8) Achievements x");
-            Ui.println("9) Back");
-            Ui.println("------------------------------------------------------------");
-            switch (Ui.getValidInt()) {
-                case 1:
-                    info_enemy();
-                    break;
-                case 2:
-                    info_armour();
-                    break;
-                case 3:
-                    info_weapons();
-                    break;
-                case 4:
-                    info_health();
-                    break;
-                case 5:
-           //         info_food();
-                    break;
-                case 6:
-                    info_xp();
-                    break;
-                case 7:
-                    info_cheats();
-                    break;
-                case 8:
-            //        info_achs();
-                    break;
-                case 9:
-                    return;
-            }
-        }
-    }
 
     private static void info_enemy() {
         while (true) {

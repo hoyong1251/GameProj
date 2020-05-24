@@ -20,63 +20,30 @@ public class Stats {
     public static int timesCheated;
     public static int timesQuit;
 
-    private static String killDeathRatio;
 
     private Stats() {
     }
 
-    public static void view() {
+    public static String view() {
 
-        updateKillDeathRatio();
+    	String msg="";
 
-        Ui.cls();
-        Ui.println("-------------------------------------------------");
-        Ui.println("                   PLAYER STATS                  ");
-        Ui.println();
-        Ui.println("Battle stats:");
-        Ui.println("   High Score - " + highScore);
-        Ui.println("   Current Kill Streak - " + kills);
-        Ui.println("   Current Weapon - " + Weapon.get().getName());
-        Ui.println("   Current Enemy - " + com.hotmail.kalebmarc.textfighter.main.Enemy.get().getName());
-        Ui.println("   Total Damage Dealt - " + totalDamageDealt);
-        Ui.println("   Total Kills - " + totalKills);
-        Ui.println("   K:D - " + killDeathRatio);
-        Ui.println();
-        Ui.println("Coins:");
-        Ui.println("   Coins - " + Coins.get());
-        Ui.println("   Total coins spent - " + totalCoinsSpent);
-        Ui.println("   XP bought - " + xpBought);
-        Ui.println();
-        Ui.println("Health:");
-        Ui.println("   Health - " + Health.getStr());
-        Ui.println("   Potions used - " + Potion.pUsed);
-        Ui.println("   Times Died - " + Health.timesDied);
-        Ui.println();
-        Ui.println("Other: ");
-        Ui.println("   Cheats Enabled? - " + Cheats.enabled()); //삭제
-        Ui.println("   Level - " + Xp.getLevel());
-        Ui.println("   Xp - " + Xp.getFull());
-        Ui.println("   Total Xp gained - " + Xp.total);
-        Ui.println("   Times cheated - " + timesCheated); //삭제
-        Ui.println("   Times quit - " + timesQuit);
-        Ui.println();
-        Ui.println("-------------------------------------------------");
-        Ui.pause();
-    }
-
-    private static void updateKillDeathRatio() {
-        int i, gcm = 1, first = totalKills, second = Health.timesDied;
-
-        i = (first >= second) ? first : second;
-
-        while (i != 0) {
-            if (first % i == 0 && second % i == 0) {
-                gcm = i;
-                break;
-            }
-            i--;
-        }
-
-        killDeathRatio = first / gcm + ":" + second / gcm;
+        msg+="---- 전투 정보 ----\n";
+   
+        msg+="  총 가한 데미지 : " + totalDamageDealt+"\n";
+        msg+="  몬스터 죽인 횟수 : " + totalKills+"\n";
+        msg+="---- 플레이어 정보 ----"+"\n";
+        msg+="  코인 : " + Coins.get()+"\n";
+        msg+="  총 코인 소비 : " + totalCoinsSpent+"\n";
+        msg+="  코인으로 산 경험치 : " + xpBought+"\n";
+        msg+="  체력 : " + Health.getStr()+"\n";
+        msg+="  사용한 포션수 : " + Potion.pUsed+"\n";
+        msg+="  죽은 횟수 : " + Health.timesDied+"\n";
+        msg+="---- 레벨 정보 ----\n";
+        msg+="   레벨 : " + Xp.getLevel()+"\n";
+        msg+="   경험치 : " + Xp.getFull()+"\n";
+        msg+="   총 획득한 경험치 : " + Xp.total+"\n";
+        msg+="   게임종료 횟수 : " + timesQuit+"\n";
+        return msg;
     }
 }

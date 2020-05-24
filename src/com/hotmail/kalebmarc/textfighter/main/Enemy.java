@@ -1,5 +1,6 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
+import com.hotmail.kalebmarc.textfighter.item.Armour;
 import com.hotmail.kalebmarc.textfighter.player.*;
 
 import javax.swing.*;
@@ -103,9 +104,21 @@ public class Enemy {
         return false;
     }
 
-    void dealDamage() {
+    public String dealDamage() {
         int damage = Random.RInt(this.damageMin, this.damageMax);
-        Health.takeDamage(damage);
+       // Health.takeDamage(damage);
+        String msg="";
+        double resist = Armour.getEquipped().getDamResist() / 100.0;
+        damage = (int) (damage - (damage * resist));
+        health-=damage;
+        msg+="----------------------------------------------------\n";
+        msg+=" " + Enemy.get().getName() + " 을 공격 했습니다! \n";
+        msg+="몬스터가 체력을 " + damage + " 만큼 잃었습니다.\n";
+       	msg+="----------------------------------------------------\n";
+        msg+="내 체력: " + Health.getStr()+"\n";
+        msg+="몬스터 체력: " + Enemy.get().getHeathStr()+"\n";
+        if(health<=0) {die(); msg="다음 전투로 넘어갑니다...";}
+        return msg;
     }
 
     private void die() {
@@ -145,7 +158,7 @@ public class Enemy {
         } else {
             this.enemy_potion--;
             this.takeDamage(-20);
-            Ui.msg("The " + this.name + " has used a potion. They gained 20 health");
+          //  Ui.msg("The " + this.name + " has used a potion. They gained 20 health");
             return true;
         }
     }

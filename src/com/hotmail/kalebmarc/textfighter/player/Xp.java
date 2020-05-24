@@ -31,7 +31,7 @@ public class Xp {
             xp = 49000;
         }else {
 
-			Ui.popup("You've leveled up! You are now level " + (level + 1) + "!\nYou have been rewarded 100 coins!", "Level Up!", JOptionPane.INFORMATION_MESSAGE);
+			Ui.popup("레벨업! 레벨 " + (level + 1) + " 이 되셨습니다 \n 보상으로 100코인이 지급됩니다", "축하합니다!", JOptionPane.INFORMATION_MESSAGE);
 			xp = 0;
 			xpNeeded += 100;
 			level++;
