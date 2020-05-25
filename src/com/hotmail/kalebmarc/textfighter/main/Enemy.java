@@ -28,7 +28,7 @@ public class Enemy {
     private int xp;
 
     //Variables
-    private int health;
+    public int health;
     private int enemy_potion;
 
     public Enemy(String name, int healthMax, int coinDropMin, int coinDropMax,
@@ -108,20 +108,24 @@ public class Enemy {
         int damage = Random.RInt(this.damageMin, this.damageMax);
        // Health.takeDamage(damage);
         String msg="";
-        double resist = Armour.getEquipped().getDamResist() / 100.0;
-        damage = (int) (damage - (damage * resist));
-        health-=damage;
+        if (Enemy.get().getHealth() <= Enemy.get().getHealthMax() / 2){
+            if( Enemy.get().usePotion()) {
+             Ui.popup(" "+ Enemy.get().getName()+ " 가 포션을 사용했습니다. 몬스터 체력이 20 올랐습니다\n"+"\tEnemy health: "+Enemy.get().getHeathStr(), "", JOptionPane.INFORMATION_MESSAGE);
+            }
+           }
+        Health.health-=damage;
         msg+="----------------------------------------------------\n";
-        msg+=" " + Enemy.get().getName() + " 을 공격 했습니다! \n";
-        msg+="몬스터가 체력을 " + damage + " 만큼 잃었습니다.\n";
+        msg+=" " + Enemy.get().getName() + " 에게 공격 당했습니다! \n";
+        msg+=User.name()+"이(가) " + damage + " 만큼 체력을 잃었습니다\n";
        	msg+="----------------------------------------------------\n";
         msg+="내 체력: " + Health.getStr()+"\n";
         msg+="몬스터 체력: " + Enemy.get().getHeathStr()+"\n";
-        if(health<=0) {die(); msg="다음 전투로 넘어갑니다...";}
+
+        if(Health.health<=0) {Health.die(); msg="부활 합니다....";}
         return msg;
     }
 
-    private void die() {
+    public void die() {
 
         //Get rewards & store in temp vars
         int tempCoin = Random.RInt(coinDropMin, coinDropMax);

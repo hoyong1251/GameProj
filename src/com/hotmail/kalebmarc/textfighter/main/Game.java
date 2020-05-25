@@ -186,7 +186,7 @@ public class Game {
 	GamePanel.add(btnNewButton_7);
 	btnNewButton_7.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			int option=JOptionPane.showConfirmDialog(null, "정말 포션을 사용하시겠습니까? ", "안내", JOptionPane.YES_NO_OPTION);
+			int option=JOptionPane.showConfirmDialog(null, "정말 포션을 사용하시겠습니까? \n 체력이 "+Health.getOutOf()/2+"만큼 회복됩니다", "안내", JOptionPane.YES_NO_OPTION);
 			if(option==JOptionPane.YES_OPTION) {
 				Potion.use();
 			}else {
@@ -322,7 +322,8 @@ public class Game {
 	btnNewButton.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\weapon2.jpg"));
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		
+			Shop.weapons();
+			Saves.save();
 		}
 	});
 	btnNewButton.setBounds(188, 170, 120, 42);
@@ -330,9 +331,10 @@ public class Game {
 	
 	JButton btnNewButton_1 = new JButton("");
 	btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\armor2.jpg"));
-	btnNewButton.addActionListener(new ActionListener() {
+	btnNewButton_1.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		
+			Shop.armour();
+			Saves.save();
 		}
 	});
 	btnNewButton_1.setBounds(189, 250, 120, 42);
@@ -340,9 +342,10 @@ public class Game {
 	
 	JButton btnNewButton_2 = new JButton("");
 	btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\potion.png"));
-	btnNewButton.addActionListener(new ActionListener() {
+	btnNewButton_2.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		
+		Potion.buy();
+		Saves.save();
 		}
 	});
 	btnNewButton_2.setBounds(205, 322, 60, 60);
@@ -350,23 +353,26 @@ public class Game {
 	
 	JButton btnNewButton_3 = new JButton("");
 	btnNewButton_3.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\xp.jpg"));
-	btnNewButton.addActionListener(new ActionListener() {
+	btnNewButton_3.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		
+			Shop.xp();
+			Saves.save();
 		}
 	});
 	btnNewButton_3.setBounds(24, 441, 120, 86);
 	shoppanel.add(btnNewButton_3);
 	
+	
 	JButton btnNewButton_4 = new JButton("");
 	btnNewButton_4.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\health.jpg"));
-	btnNewButton.addActionListener(new ActionListener() {
+	btnNewButton_4.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		
+			Health.upgrade();
 		}
 	});
 	btnNewButton_4.setBounds(188, 414, 91, 49);
 	shoppanel.add(btnNewButton_4);
+	
 	
 	JButton btnNewButton_5 = new JButton("\uB4A4\uB85C \uAC00\uAE30");
 	btnNewButton_5.addActionListener(new ActionListener() {

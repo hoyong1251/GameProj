@@ -67,22 +67,21 @@ public class Potion {
 
     public static void buy() {
 
-        int level = getLevel();
         int price = getPrice();
-
-        if (Xp.getLevel() < level) {
-            Ui.println("You have to be at least level " + level + " to buy this!");
-            Ui.pause();
-        } else if (price <= Coins.get()) {
-            Coins.set(-price, true);
-            Stats.coinsSpentOnHealth += price;
-            set(1, true);
-            Ui.println("Thank you for your purchase. Come again soon! ");
-            Ui.pause();
-        } else {
-            Ui.println("You do not have enough coins.");
-            Ui.pause();
-        }
+        
+		int option=JOptionPane.showConfirmDialog(null, "포션 1개 가격은 50 코인 입니다 \n 정말 구매하시겠습니까?", "안내", JOptionPane.YES_NO_OPTION);
+		if(option==JOptionPane.YES_OPTION) {
+			if (price <= Coins.get()) {
+	            Coins.set(-price, true);
+	            Stats.coinsSpentOnHealth += price;
+	            set(1, true);
+	            Ui.popup("구매에 성공했습니다!", "구매", JOptionPane.INFORMATION_MESSAGE);
+	        } else {
+	            Ui.popup("코인이 부족합니다!","경고",JOptionPane.INFORMATION_MESSAGE);
+	        }	
+		}else {
+			return;
+		}
     }
 
     public static int getLevel() {

@@ -216,7 +216,7 @@ public class MainFrame {
 				if(!f.exists()) {
 					Ui.popup("게임을 시작합니다", " ", JOptionPane.INFORMATION_MESSAGE);
 					setDif(Game.getDifficulty(), true, false); //게임난이도는 Easy로 고정
-					Health.set(100, 100);
+					Health.set(50, 50);
 					Enemy.encounterNew();
 					Saves.save();
 					panel.setVisible(false);
@@ -230,7 +230,7 @@ public class MainFrame {
 				if(result==JOptionPane.YES_OPTION) {
 					Ui.popup("게임을 시작합니다", " ", JOptionPane.INFORMATION_MESSAGE);
 					setDif(Game.getDifficulty(), true, false); //게임난이도는 Easy로 고정
-					Health.set(100, 100);
+					Health.set(50, 50);
 					Enemy.encounterNew();
 					Saves.save();
 					panel.setVisible(false);

@@ -93,28 +93,18 @@ public class Health {
 
         //TODO Possibly find a better way to calculate and execute this whole 'upgrade health' section later
         switch (getOutOf()) {
-            case 100:
+            case 50:
                 return 0;
-            case 110:
+            case 60:
                 return 1;
-            case 120:
+            case 70:
                 return 2;
-            case 130:
+            case 80:
                 return 3;
-            case 140:
+            case 90:
                 return 4;
-            case 150:
+            case 100:
                 return 5;
-            case 160:
-                return 6;
-            case 170:
-                return 7;
-            case 180:
-                return 8;
-            case 190:
-                return 9;
-            case 200:
-                return 10;
             default:
          //       Handle.error("Unable to get health level");
                 return 0;
@@ -122,11 +112,10 @@ public class Health {
     }
 
     public static void upgrade() {
-        while (true) {
 
             //Make sure player didn't already upgrade fully
-            if (Health.getOutOf() == 200) {
-                Ui.msg("You have upgraded your health to the maximum level");
+            if (Health.getOutOf() == 100) {
+            	 Ui.popup("이미 최대 체력에 도달했습니다!", "안내", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
@@ -134,41 +123,26 @@ public class Health {
             int health = getOutOf() + 10;
 
             //Make sure health doesn't go over 200
-            if (health > 200) {
-                health = 200;
+            if (health > 100) {
+                health = 100;
             }
 
-            Ui.cls();
-            Ui.println("-----------------------------------------------------------");
-            Ui.println("                           Upgrade Health                     ");
-            Ui.println("You can increase your max health up to 200. ");
-            Ui.println("You'll be able to upgrade 10HP at a time, and");
-            Ui.println("each upgrade will cost " + UPGRADE_PRICE + " coins.");
-            Ui.println();
-            Ui.println("Current Health: " + getStr());
-            Ui.println();
-            Ui.println("1) Upgrade to " + health + " health.");
-            Ui.println("2) Go back");
-            Ui.println("-----------------------------------------------------------");
+           String msg="";
 
-            if (Ui.getValidInt() == 1) {
-
-                //Level that player is trying to upgrade to,
-                //and level needed to upgrade.
+            msg+="최대 체력을 증가 시킬수 있습니다 \n 한번에 10만큼의 최대 체력이 증가하고 업그레이드 비용은 "+UPGRADE_PRICE+" 코인 입니다!\n";
+			int option=JOptionPane.showConfirmDialog(null, msg+"구매 하시겠습니까?", "안내", JOptionPane.YES_NO_OPTION);
+			if(option==JOptionPane.YES_OPTION) {
                 int level = getLevel() + 1;
 
                 if ((Xp.getLevel() >= level) && (Coins.get() >= UPGRADE_PRICE)) {
 
                     //Make sure user doesn't already have full health
-                    if (getLevel() == 10) {
-                        Ui.msg("You already have max health!");
-                    }
 
                     //Upgrade health
                     Health.set(health, health);
                     Coins.set(-UPGRADE_PRICE, true);
 
-                    Ui.msg("You upgraded your health.");
+                    Ui.popup("업그레이드 성공! \n 최대 체력이 10만큼 증가하고 체력이 회복됩니다","성공",JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                 /*
@@ -177,17 +151,19 @@ public class Health {
 				 * Coins: [coins]
 				 * Level: [level]
 				 */
-                    Ui.cls();
-                    Ui.println("Cannot upgrade, make sure you are at least");
-                    Ui.println("level " + level + ", and you have at least " + UPGRADE_PRICE + " coins.");
-                    Ui.println();
-                    Ui.println("Level: " + Xp.getLevel());
-                    Ui.println("Coins: " + Coins.get());
-                    Ui.pause();
+                	String failmsg="";
+                	failmsg+="업그레이드 실패! \n 최소 레벨"+level+"이 필요 하고 "+UPGRADE_PRICE+" 코인이 필요합니다!\n";
+
+                	failmsg+="Level: " + Xp.getLevel()+"\n";
+                	failmsg+="Coins: " + Coins.get()+"\n";
+                    Ui.popup(failmsg, "경고", JOptionPane.INFORMATION_MESSAGE);
                 }//if
-            } else {
-                return;
-            }
-        }//While(true)
+			}else {
+				
+			}
+
+                //Level that player is trying to upgrade to,
+                //and level needed to upgrade.
+
     }//upgrade
 }//Health

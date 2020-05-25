@@ -2,6 +2,7 @@ package com.hotmail.kalebmarc.textfighter.main;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.hotmail.kalebmarc.textfighter.item.Armour;
@@ -98,120 +99,86 @@ class Shop {
         }
     }
 
-    private static void weapons() {
-        while (true) {
-            Ui.cls();
-            Ui.println("-------------------------------------------------------------------");
-            Ui.println("                              Weapons                              ");
-            Ui.println();
-            Ui.println();
-            Ui.println("Coins: " + Coins.get());
-            Ui.println("Level: " + Xp.getLevel());
-            Ui.println();
-            Ui.println("-------------------------------------------------------------------");
-            int j = 0;
-            int[] offset = new int[Weapon.arrayWeapon.size()];
+    public static void weapons() {
+        	String msg="";
+            msg+="    Weapons    \n\n";
+            msg+="Coins: " + Coins.get()+"\n";
+            msg+="Level: " + Xp.getLevel()+"\n";
             for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
-                if (Weapon.arrayWeapon.get(i).isBuyable()) {
-                    Ui.println((j + 1) + ") " + Weapon.arrayWeapon.get(i).getName());
-                    Ui.println("   Price: " + Weapon.arrayWeapon.get(i).price);
-                    Ui.println("   Level: " + Weapon.arrayWeapon.get(i).level);
-                    offset[j] = i - j;
-                    j++;
-                    Ui.println();
-                }
+                    msg+=(i + 1) + ") " + Weapon.arrayWeapon.get(i).getName()+"\n";
+                    msg+="   Price: " + Weapon.arrayWeapon.get(i).price+"\n";
+                    msg+="   Level: " + Weapon.arrayWeapon.get(i).level+"\n";
+                
             }
-            Ui.println((j + 2) + ") AMMO");
-            Ui.println();
-            Ui.println((j + 3) + ") Back");
 
-            while (true) {//Make it easy to break, without going back to main store menu
-
-                int menuItem = Ui.getValidInt();
-
-                try { //This is probably pretty bad practice. Using exceptions as a functional part of the program.. Use variables!
-
-                    //choices other than options in the array go here:
-                   // if (menuItem == (j + 1))
-                	
-                    if (menuItem == (j + 2))
-                        buyAmmo();
-                    if (menuItem == (j + 3) || menuItem > j)
-                        return;
-
-                    //reverts back to Weapon indexing
-                    menuItem--;
-                    menuItem = menuItem + offset[menuItem];
-
-                    //Results go here:
-                    Weapon.arrayWeapon.get(menuItem).buy();
+            
+            String result=JOptionPane.showInputDialog(msg+"구매하실 무기의 번호를 입력해주세요");
+            if(result!=null) {
+            int select=Integer.parseInt(result);
+            
+                try { 
+                	select--;
+                    Weapon.arrayWeapon.get(select).buy();
                     return;
 
                 } catch (Exception e) {
-                    Ui.println();
-                    Ui.println(menuItem + " is not an option.");
+                    Ui.popup((select+1) + " 는 없는 메뉴입니다!","경고",JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-        }
+        
     }
 
-    private static void xp() {
+    public static void xp() {
 
         //Makes sure player has enough money
         boolean valid;
 
-        while (true) {
-
             //Makes sure player isn't level 10 already
             if (Xp.getLevel() == 100) {
-                Ui.msg("You're already level 100! You cannot buy any more xp.");
+                Ui.popup("만렙(100)에 도달하셨습니다! \n 더이상 경험치가 필요없습니다","안내",JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-
-            Ui.cls();
-            Ui.println("-------------------------------------------------------------------");
-            Ui.println("                                 XP                                ");
-            Ui.println();
-            Ui.println();
-            Ui.println("Level: " + Xp.getLevel());
-            Ui.println("XP: " + Xp.getFull());
-            Ui.println("Coins: " + Coins.get());
-            Ui.println();
-            Ui.println("You can buy XP for 1 coin per XP. How much would you like to buy?");
-            Ui.println("**Enter 0 to go back**");
-            Ui.println("-------------------------------------------------------------------");
-
-            int buy = Ui.getValidInt();
+            String msg="";
+            msg+="레벨: " + Xp.getLevel()+"\n";
+            msg+="현재 경험치: " + Xp.getFull()+"\n";
+            msg+="코인: " + Coins.get()+"\n";
+            msg+="1 코인으로 1 경험치를 살 수 있습니다! \n";
+            
+            String result=JOptionPane.showInputDialog(msg+"구매하실 경험치의 수량을 입력해주세요!");
+            if(result!=null) {
+            int select=Integer.parseInt(result);
+           // int buy = Ui.getValidInt();
             valid = true;
 
             //Tests
-            if (buy > Coins.get()) {
+            if (select > Coins.get()) {
                 //Not enough coins
-                Ui.msg("You don't have enough coins to buy this much xp.");
+                Ui.popup("코인이 부족합니다!","경고",JOptionPane.INFORMATION_MESSAGE);
                 valid = false;
             }
-            if (Xp.getLevel() == 100) {
-                Ui.msg("You are already level 100; which is the maximum level.");
+  //          if (Xp.getLevel() == 100) {
+   //             Ui.msg("You are already level 100; which is the maximum level.");
+   //             valid = false;
+    //        }
+            if (select <= 0) {
+                Ui.popup("0보다 큰 숫자를 입력해 주세요","경고",JOptionPane.INFORMATION_MESSAGE);
                 valid = false;
-            }
-            if (buy < 0) {
-                Ui.msg("You can't buy a negative amount of Xp.. Nice try though ;)");
-                valid = false;
-            }
-            if (buy == 0) {
-                return;
             }
 
             if (valid) {
-                Ui.msg("You have bought " + buy + " xp.");
-
+                Ui.popup(select +"만큼의 경험치를 샀습니다!","구매 성공",JOptionPane.INFORMATION_MESSAGE);
                 //Results
-                Xp.set(buy, true);
-                Coins.set(-buy, true);
-                Stats.xpBought += buy;
+                Xp.set(select, true);
+                Coins.set(-select, true);
+                Stats.xpBought += select;
             }
+            
+           }
+            else { return;}
+            
 
-        }
+
+        
     }
 
     private static void buyAmmo() {
@@ -275,53 +242,30 @@ class Shop {
             return;
         }
     }
-    private static void armour() {
-        while (true) {
-            Ui.cls();
-            Ui.println("-------------------------------------------------------------------");
-            Ui.println("                            Body Armour                            ");
-            Ui.println();
-            Ui.println();
-            Ui.println("Coins: " + Coins.get());
-            Ui.println("Level: " + Xp.getLevel());
-            Ui.println();
-            Ui.println("-------------------------------------------------------------------");
-            int j = 0;
-            int[] armourShopOffset = new int[Armour.getArmours().size()];
-            for (int i = 0; i < Armour.getArmours().size(); i++) {
-                if (Armour.getArmours().get(i).getPrice() != 0) {
-                    Ui.println((j + 1) + ") " + Armour.getArmours().get(i).getName());
-                    Ui.println("   Price: " + Armour.getArmours().get(i).getPrice());
-                    Ui.println("   Level: " + Armour.getArmours().get(i).getLevel());
-                    armourShopOffset[j] = i - j;
-                    j++;
-                    Ui.println();
-                }
-            }
-            Ui.println((j + 1) + ") Back");
+    public static void armour() {
+    	String msg="";
+        msg+="    Armours    \n\n";
+        msg+="Coins: " + Coins.get()+"\n";
+        msg+="Level: " + Xp.getLevel()+"\n";
+        for (int i = 0; i < Armour.getArmours().size(); i++) {
+                msg+=(i + 1) + ") " + Armour.getArmours().get(i).getName()+"\n";
+                msg+="   Price: " + Armour.getArmours().get(i).getPrice()+"\n";
+                msg+="   Level: " + Armour.getArmours().get(i).getLevel()+"\n";
+            
+        }
 
-            while (true) {
+        
+        String result=JOptionPane.showInputDialog(msg+"구매하실 방어구의 번호를 입력해주세요");
+        if(result!=null) {
+        int select=Integer.parseInt(result);
+        
+            try { 
+            	select--;
+                Armour.getArmours().get(select).buy();
+                return;
 
-                int menuItem = Ui.getValidInt();
-
-                try {
-
-                    //choices other than options in the array go here:
-                    if (menuItem == j + 1 || menuItem > j)
-                        return;
-
-                    //reverts back to armour indexing
-                    menuItem--;
-                    menuItem = menuItem + armourShopOffset[menuItem];
-
-                    //Results go here:
-                    Armour.getArmours().get(menuItem).buy();
-                    return;
-
-                } catch (Exception e) {
-                    Ui.println();
-                    Ui.println(menuItem + " is not an option.");
-                }
+            } catch (Exception e) {
+                Ui.popup((select+1) + " 는 없는 메뉴입니다!","경고",JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

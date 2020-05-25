@@ -209,7 +209,7 @@ public class Weapon {
         com.hotmail.kalebmarc.textfighter.player.Stats.totalDamageDealt += damageDealt;
         com.hotmail.kalebmarc.textfighter.player.Xp.setBattleXp(damageDealt, true);
         String msg="";
-        if (Enemy.get().getHealth() <= Enemy.get().getHealthMax() / 3){
+        if (Enemy.get().getHealth() <= Enemy.get().getHealthMax() / 2){
            if( Enemy.get().usePotion()) {
             Ui.popup(" "+ Enemy.get().getName()+ " 가 포션을 사용했습니다. 몬스터 체력이 20 올랐습니다\n"+"\tEnemy health: "+Enemy.get().getHeathStr(), "", JOptionPane.INFORMATION_MESSAGE);
            }
@@ -217,14 +217,14 @@ public class Weapon {
         
         double resist = Armour.getEquipped().getDamResist() / 100.0;
         damageDealt = (int) (damageDealt - (damageDealt * resist));
-        Health.health-=damageDealt;
+        Enemy.get().health-=damageDealt;
         msg+="----------------------------------------------------\n";
-        msg+=" " + Enemy.get().getName() + " 에게 공격 당했습니다! \n";
-        msg+=User.name()+"이(가) " + damageDealt + " 만큼 체력을 잃었습니다\n";
+        msg+=" " + Enemy.get().getName() + " 을 공격 했습니다! \n";
+        msg+="몬스터가 체력을 " + damageDealt + " 만큼 잃었습니다.\n";
        	msg+="----------------------------------------------------\n";
         msg+="내 체력: " + Health.getStr()+"\n";
         msg+="몬스터 체력: " + Enemy.get().getHeathStr()+"\n";
-        if(Health.health<=0) {Health.die(); msg="부활 합니다....";}
+        if( Enemy.get().health<=0) {Enemy.get().die(); msg="다음 전투로 넘어갑니다...";}
         
         
 		return msg; 
@@ -269,19 +269,19 @@ public class Weapon {
 
     public void buy() {
         if (!isBuyable()) {
-            Ui.msg("Sorry, this item is no longer in stock.");
+            Ui.popup("이 무기는 구매할 수 없는 무기입니다!","경고",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (this.owns()) {
-            Ui.msg("You already own this weapon.");
+            Ui.popup("이미 이 무기를 가지고 있습니다!","안내",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (level > Xp.getLevel()) {
-            Ui.msg("You are not a high enough level to buy this item.");
+            Ui.popup("구매를 하기위한 레벨이 부족합니다! ", "경고",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (price > Coins.get()) {
-            Ui.msg("You do not have enough coins to buy this item.");
+            Ui.popup("무기를 구매하기위한 코인이 부족합니다!","경고",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -290,13 +290,7 @@ public class Weapon {
         Stats.coinsSpentOnWeapons += price;
         this.owns = true;
         current = this;
-        Ui.println("You have bought a " + this.getName() + " for " + this.price + " coins.");
-        Ui.println("Coins: " + Coins.get());
-        Ui.pause();
-
-        //Give ammo
-        ammo += this.ammoIncludedWithPurchase;
-
+        Ui.popup("구매성공! \n 자동으로 장착됩니다 \n\n 남은코인: "+ Coins.get(), "구매성공", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void buyAmmo() {

@@ -158,22 +158,19 @@ public class Armour {
 
     public boolean buy() {
         if (Xp.getLevel() < this.getLevel()) {
-            Ui.println("You have to be at least level " + this.getLevel() + " to buy this!");
-            Ui.pause();
+            Ui.popup("최소 레벨 " + this.getLevel() + "이 되어야 구매 할 수 있습니다! ","경고",JOptionPane.INFORMATION_MESSAGE);
             return false;
         } else if (this.isOwns()) {
-            Ui.println("You already own this.");
-            Ui.pause();
+        	 Ui.popup("이미 이 방어구를 가지고 있습니다!","안내",JOptionPane.INFORMATION_MESSAGE);
             return false;
         } else if (this.getPrice() <= Coins.get()) {
             Coins.set(-this.price, true);
             setOwns(true);
             equipSilent();
-            Ui.pause();
+            Ui.popup("구매성공! \n 자동으로 장착됩니다 \n\n 남은코인: "+ Coins.get(), "구매성공", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            Ui.println("You do not have enough coins.");
-            Ui.pause();
+        	 Ui.popup("무기를 구매하기위한 코인이 부족합니다!","경고",JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
     }

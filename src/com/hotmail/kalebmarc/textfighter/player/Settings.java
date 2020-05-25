@@ -153,10 +153,10 @@ public class Settings {
             //Weapons
             //Gun:   (name, ammoUsed, ammoIncludedWithPurchase, buyable, price, ammoPrice, level, chanceOfMissing, firstInit, changeDif)
             //Melee: (name, startingWeapon, buyable, price, level, damageMin, damageMax, firstInit)
-            Game.fists = new Weapon("Fists", true, false, 0, 0, 5, 10, firstInit, changeDif);
-            Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 3, 8, 15, firstInit, changeDif);
-            Game.knife = new Weapon("Knife", false, true, 300, 4, 10, 30, firstInit, changeDif);
-            Game.pipe = new Weapon("Pipe", false, false, 0, 0, 10, 20, firstInit, changeDif);
+            Game.fists = new Weapon("Fists", true, true, 0, 1, 7, 7, firstInit, changeDif);
+            Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 2, 10, 15, firstInit, changeDif);
+            Game.knife = new Weapon("Knife", false, true, 400, 4, 15, 30, firstInit, changeDif);
+            Game.pipe = new Weapon("Pipe", false, false, 0, 1, 10, 20, firstInit, changeDif);
        /*     
             Game.pistol = new Weapon("Pistol", 1, 18, true, 250, 1, 4, 15, firstInit, changeDif);
             Game.smg = new Weapon("Smg", 10, 75, true, 700, 1, 10, 75, firstInit, changeDif);
@@ -166,7 +166,7 @@ public class Settings {
 	*/
             //Price
             Weapon.BULLET_DAMAGE = 10;
-            Potion.pPrice = 10;
+            Potion.pPrice = 50;
             Health.setUpgradePrice(100);
 
             //Levels needed
