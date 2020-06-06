@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -69,9 +72,25 @@ public class MainFrame {
 			}
 		});
 	}
-
-
 	 */
+	
+	public static void playSound(boolean loop) {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\startmusic.wav").getAbsoluteFile());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	        if(loop) {clip.loop(-1);}
+	    } catch(Exception ex) {
+	        System.out.println("Error with playing sound.");
+	        ex.printStackTrace();
+	    }
+	}
+
+	
+	
+	
+	
 	public MainFrame() {
 		initialize();
 	}
@@ -91,7 +110,7 @@ public class MainFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
+		playSound(false);
 	
 		
 		ImagePanel panel= new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\StartImage.jpg").getImage());
@@ -135,6 +154,7 @@ public class MainFrame {
 			public void actionPerformed(ActionEvent e) {
 				BgImage.setVisible(false);
 				panel.setVisible(true);
+				playSound(false);
 			}
 		});
 		btnNewButton.setForeground(Color.BLACK);
@@ -196,7 +216,9 @@ public class MainFrame {
 				Saves.load();
 				panel.setVisible(false);
 				frame.dispose();
+				Time.getreward(Time.getofflinetime());
 				Game.start();
+
 				
 				}
 			}

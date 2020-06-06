@@ -35,6 +35,8 @@ public class Saves {
 		 * TODO: make a version checker that checks each part of a version ex: 1.4.1DEV
 		 * then determine whether or not it's older, current or newer.
 		 */
+		
+		set("Finishtime", System.currentTimeMillis());
 		set("Version", Version.getFull());
 
 		//Health
@@ -159,6 +161,7 @@ public class Saves {
 		Health.timesDied = getInteger("Stats.TimesDied");
 
 		//Coins
+		Time.setFinishtime(getLong("Finishtime"));
 		Coins.set(getInteger("User.Balance"), false);
 		Stats.totalCoinsSpent = getInteger("Stats.Money_Spent.Coins");
 		Stats.coinsSpentOnBankInterest = getInteger("Stats.Money_Spent.Interest");

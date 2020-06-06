@@ -90,6 +90,11 @@ public class Game {
 	gameframe.setLocationRelativeTo(null);
 	gameframe.setVisible(true);
 
+	
+	//종료할때의 현재시간을 기록해두고 
+	//세이브파일에 현재시간 저장
+	//세이브 파일 로드할때 겟 인티저로 시간 가져오면
+	//현재 시간이랑 비교해서 차이값을 리턴
 	ImagePanel homepanel = new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\homeImg.jpg").getImage());
 	ImagePanel shoppanel = new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\shopImg.jpg").getImage());
 
