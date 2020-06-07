@@ -13,16 +13,13 @@
           <release>13</release>
         </configuration>
       </plugin>
-      <plugin>
-      <!-- Build an executable JAR -->
+       <plugin>
       <groupId>org.Apache.maven.plugins</groupId>
       <artifactId>maven-jar-plugin</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+       <version>0.0.1-SNAPSHOT</version>
       <configuration>
         <archive>
           <manifest>
-            <addClasspath>true</addClasspath>
-            <classpathPrefix>lib/</classpathPrefix>
             <mainClass>com.hotmail.kalebmarc.textfighter.main.Start</mainClass>
           </manifest>
         </archive>
