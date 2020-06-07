@@ -95,8 +95,8 @@ public class Game {
 	//세이브파일에 현재시간 저장
 	//세이브 파일 로드할때 겟 인티저로 시간 가져오면
 	//현재 시간이랑 비교해서 차이값을 리턴
-	ImagePanel homepanel = new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\homeImg.jpg").getImage());
-	ImagePanel shoppanel = new ImagePanel(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\shopImg.jpg").getImage());
+	ImagePanel homepanel = new ImagePanel(new ImageIcon(".\\src\\images\\homeImg.jpg").getImage());
+	ImagePanel shoppanel = new ImagePanel(new ImageIcon(".\\src\\images\\shopImg.jpg").getImage());
 
 	
 	
@@ -295,7 +295,7 @@ public class Game {
 	homepanel.add(Button_8);
 	
 	JButton Button_9 = new JButton(); //장비착용
-	Button_9.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\weapon.jpg"));
+	Button_9.setIcon(new ImageIcon(".\\src\\images\\weapon.jpg"));
 	Button_9.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Weapon.choose();	
@@ -306,7 +306,7 @@ public class Game {
 	homepanel.add(Button_9);
 	
 	JButton Button_10 = new JButton();//방어구 착용
-	Button_10.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\armor.jpg"));
+	Button_10.setIcon(new ImageIcon(".\\src\\images\\armor.jpg"));
 	Button_10.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Armour.choose();
@@ -324,7 +324,7 @@ public class Game {
 	shoppanel.setLayout(null);
 	
 	JButton btnNewButton = new JButton("");
-	btnNewButton.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\weapon2.jpg"));
+	btnNewButton.setIcon(new ImageIcon(".\\src\\images\\weapon2.jpg"));
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Shop.weapons();
@@ -335,7 +335,7 @@ public class Game {
 	shoppanel.add(btnNewButton);
 	
 	JButton btnNewButton_1 = new JButton("");
-	btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\armor2.jpg"));
+	btnNewButton_1.setIcon(new ImageIcon(".\\src\\images\\armor2.jpg"));
 	btnNewButton_1.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Shop.armour();
@@ -346,7 +346,7 @@ public class Game {
 	shoppanel.add(btnNewButton_1);
 	
 	JButton btnNewButton_2 = new JButton("");
-	btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\potion.png"));
+	btnNewButton_2.setIcon(new ImageIcon(".\\src\\images\\potion.png"));
 	btnNewButton_2.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		Potion.buy();
@@ -357,7 +357,7 @@ public class Game {
 	shoppanel.add(btnNewButton_2);
 	
 	JButton btnNewButton_3 = new JButton("");
-	btnNewButton_3.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\xp.jpg"));
+	btnNewButton_3.setIcon(new ImageIcon(".\\src\\images\\xp.jpg"));
 	btnNewButton_3.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Shop.xp();
@@ -369,7 +369,7 @@ public class Game {
 	
 	
 	JButton btnNewButton_4 = new JButton("");
-	btnNewButton_4.setIcon(new ImageIcon("C:\\Users\\j9794\\git\\Text-Fighter\\src\\images\\health.jpg"));
+	btnNewButton_4.setIcon(new ImageIcon(".\\src\\images\\health.jpg"));
 	btnNewButton_4.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Health.upgrade();
@@ -423,151 +423,14 @@ public class Game {
 
 	private static void town() {
 
-		int menuChoice;
-
-		//TOWN MENU
-		while (true) {
-			Ui.cls();
-			Ui.println("------------------------------------------------------------------");
-			Ui.println("                      WELCOME TO THE TOWN                         ");
-			Ui.println("--Score Info--");
-			Ui.println("     Kill Streak: " + Stats.kills);
-			Ui.println("     Highest Kill Streak: " + Stats.highScore);
-			Ui.println("--Player Info--");
-			Ui.println("     Health: " + getStr());
-			Ui.println("     Coins: " + Coins.get());
-            Ui.println("     Potions: "+ Potion.get());
-			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
-			Ui.println("------------------------------------------------------------------");
-			Ui.println("1) Casino x");
-			Ui.println("2) Home x");
-			Ui.println("3) Bank x");
-			Ui.println("4) Shop");
-			Ui.println("5) Upgrade Health");
-			Ui.println("6) Back");
-			Ui.println("------------------------------------------------------------------");
-
-			menuChoice = Ui.getValidInt();
-
-			switch (menuChoice) {
-				case 1:
-	//				Casino.menu();
-					break;
-				case 2:
-					//home();
-					break;
-				case 3:
-	//				Bank.menu();
-					break;
-				case 4:
-					Shop.menu();
-					break;
-				case 5:
-					upgrade();
-					break;
-				case 6:
-					return;
-				default:
-					break;
-			}//Switch
-		}//While Loop
 	}//Method
 
 	private static void home() {
 
-		int menuChoice;
-
-		//HOME MENU
-		while (true) {
-			Ui.cls();
-			Ui.println("------------------------------------------------------------------");
-			Ui.println("                          WELCOME HOME                            ");
-			Ui.println("--Score Info--");
-			Ui.println("     Kill Streak: " + Stats.kills);
-			Ui.println("     Highest Kill Streak: " + Stats.highScore);
-			Ui.println("--Player Info--");
-			Ui.println("     Health: " + getStr());
-			Ui.println("     Coins: " + Coins.get());
-            Ui.println("     Potions: " + Potion.get());
-			Ui.println("     Equipped Weapon: " + Weapon.get().getName());
-			
-			//방어구 출력
-			Ui.println("------------------------------------------------------------------");
-			Ui.println("1) Equip weapon");
-			Ui.println("2) Equip Armour");
-			Ui.println("3) View Item Chest x");
-			Ui.println("4) Achievements x");
-			Ui.println("5) Stats"); //팝업안내
-			Ui.println("6) About x");
-			Ui.println("7) Settings x");
-			Ui.println("8) Help"); //팝업
-			Ui.println("9) Back");
-			Ui.println("------------------------------------------------------------------");
-
-			menuChoice = Ui.getValidInt();
-
-			switch (menuChoice) {
-				case 1:
-					Weapon.choose();
-					break;
-				case 2:
-					Armour.choose();
-					break;
-				case 3:
-					Chest.view();
-					break;
-				case 4:
-					break;
-				case 5:
-					Stats.view();
-					break;
-				case 6:
-					About.view(true);
-					break;
-				case 7:
-					menu();
-					break;
-				case 8:
-			//		Help.view();
-				case 9:
-					return;
-				default:
-					break;
-			}//Switch
-		}//While loop
 	}//Method
 
 	static String getDifficulty() {
 		
-		/*
-		 * DIFFICULTY SELECTION
-		 * Prompts user to get what difficulty
-		 * they want to play on. Sets variables
-		 * according.
-		
-		Ui.cls();
-		Ui.println("_____________________________________________");
-		Ui.println("|                                           |");
-		Ui.println("|       What difficulty would you           |");
-		Ui.println("|            like to play on?               |");
-		Ui.println("|                                           |");
-		Ui.println("| 1) Easy                                   |");
-		Ui.println("| 2) Hard                                   |");
-		Ui.println("|___________________________________________|");
-
-		if (!scan.hasNextInt()) {
-			Ui.cls();
-			return "Easy";
-		} else {
-			int difficultyChoice = scan.nextInt();
-			if (difficultyChoice == 2) {
-				Ui.cls();
-				return "Hard";
-			} else {
-				Ui.cls();
-				return "Easy";
-			}
-		}*/
 		return "Easy";
 	}
 }

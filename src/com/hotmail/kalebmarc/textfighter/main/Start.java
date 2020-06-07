@@ -1,35 +1,14 @@
 package com.hotmail.kalebmarc.textfighter.main;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.io.File;
 
 
 class Start {
 
     public static void main(String args[]) {
 
-   //     if (args.length != 0 && args[0].equalsIgnoreCase("nogui")) Ui.guiEnabled = false;
-        Ui.println("Loading..");
 
-        //Check if current version is a developer version, if so, enable debug menu
- //       if (Version.get().contains("DEV")) {
-    //        Debug.enable();
-//        }
-
-        //Runs the game
-     //  Menu.load();
 
        MainFrame frame= new MainFrame();
-       
-       
-       
- 
-        //Clears Console
-        Ui.cls();
+      
 
     }
 }
