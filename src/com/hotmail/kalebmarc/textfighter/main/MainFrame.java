@@ -202,11 +202,11 @@ public class MainFrame {
 		txtFf.setBounds(88, 75, 223, 30);
 		panel.add(txtFf);
 		txtFf.setColumns(10);
-		
+		//String path = Saves.class.getProtectionDomain().getCodeSource().getLocation().getPath() +"_"+User.name()+".TFsave";
 		JButton btnNewButton_4 = new JButton("\uBD88\uB7EC\uC624\uAE30");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			File f= new File(".\\target\\classes\\_"+User.name()+".TFsave");
+			File f= new File("C:\\Users\\j9794\\git\\Text-Fighter\\Text-Fighter.jar_"+User.name()+".TFsave");
 			if(!f.exists()) {
 				Ui.popup("파일이 존재하지 않습니다 \n 게임을 종료합니다", "경고", JOptionPane.INFORMATION_MESSAGE);
 				System.exit(0);
@@ -233,7 +233,7 @@ public class MainFrame {
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				File f= new File(".\\target\\classes\\_"+User.name()+".TFsave");
+				File f= new File("C:\\Users\\j9794\\git\\Text-Fighter\\Text-Fighter.jar_"+User.name()+".TFsave");
 				if(!f.exists()) {
 					Ui.popup("게임을 시작합니다", " ", JOptionPane.INFORMATION_MESSAGE);
 					setDif(Game.getDifficulty(), true, false); //게임난이도는 Easy로 고정

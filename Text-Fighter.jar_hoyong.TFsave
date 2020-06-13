@@ -1,0 +1,64 @@
+Finishtime: 1591612209398
+Version: " \t Edited by hoyong"
+User:
+  Health: 60
+  Max_Health: 60
+  Balance: 67
+  XP:
+    Level: 7
+    Needed: 200
+    Amount: 47
+    Total: 147
+    battleXp: 0
+  Potions: 3
+  Weapons:
+    Current: 2
+    '0': true
+    Ammo:
+      '0': 0
+      '1': 0
+      '2': 0
+      '3': 0
+    '1': false
+    '2': true
+    '3': false
+  Armour:
+    Owns:
+    - 0
+    - 1
+    Current: 1
+Stats:
+  TimesDied: 0
+  Money_Spent:
+    Coins: 1047
+    Interest: 0
+    Weapons: 400
+    Health: 50
+    XP: 97
+  Potions:
+    Used: 1
+  Kills: 1
+  Total_Kills: 1
+  High_Score: 0
+  Damage_Dealt: 32
+  Bullets_Fired: 0
+  Bullets_Hit: 0
+  Times_Cheated: 0
+  Times_Quit: 0
+  Items_Crafted: 0
+Settings:
+  Difficulty:
+    Level: Easy
+    Locked: false
+  Cheats:
+    Enabled: false
+    Locked: false
+  GUI:
+    Enabled: true
+  About_Viewed: false
+Battle:
+  Current:
+    Enemy: 9
+    Enemy_Health: 100
+    Enemy_Max_Health: 100
+    Enemy_Potion: 0
